@@ -7,7 +7,8 @@ var userSchema = new Schema({
   dogs:[{name:{type:String}, age:{type:Number}, size:{type:String}, breed:{type:String}, description:{type:String}}],
   connections:[{type:Schema.Types.ObjectId, ref:"User"}],
   rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
-  possibles:[{type:Schema.Types.ObjectId, ref:"User"}]
+  possibles:[{type:Schema.Types.ObjectId, ref:"User"}],
+  facebookId:String
 });
 
 module.exports = mongoose.model('User', userSchema);

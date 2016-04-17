@@ -3,16 +3,25 @@
        bodyParser = require('body-parser'),
        cors = require('cors'),
        mongoose = require('mongoose'),
-       port = 8872,
+       port = 8873,
        mongoUri = 'mongodb://localhost:27017/pawpals',
        router = express.Router(),
        appRoutes = require('./serverResources/routes/appRoutes.js'),
-       User = require('./serverResources/schemas/User.js');
+       User = require('./serverResources/schemas/User.js'),
+       passport = require('passport'),
+       session = require('express-session'),
+       FacebookStrategy = require('passport-facebook'),
+       facebookAuth = require('./serverResources/config/facebookAuth.js'),
+       jwt = require('jwt-simple'),
+       makeSendtoken = require('./serverResources/config/jwt.js');
+
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));
   app.use(cors());
   app.use(express.static(__dirname + '/public'));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use('/api', router);
 
   router.route('/user')
@@ -21,6 +30,8 @@
 
   router.route('/user/:user_id')
     .post(appRoutes.getUser);
+
+  app.post('/auth/facebook', facebookAuth);
 
 
 
