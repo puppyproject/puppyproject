@@ -1,15 +1,15 @@
 var userSchema = require('../schemas/User');
 
 exports.postUser = function(req, res){
-  var User = new userSchema();
-  User.name = req.body.name;
-  User.email = req.body.email;
-  User.dogs = req.body.dogs;
-  User.connections = req.body.connections;
-  User.rejections = req.body.rejections;
-  User.possibles = req.body.possibles;
+  var user = new userSchema();
+  user.name = req.body.name;
+  user.email = req.body.email;
+  user.dogs = req.body.dogs;
+  user.connections = req.body.connections;
+  user.rejections = req.body.rejections;
+  user.possibles = req.body.possibles;
 
-  User.save(function(err){
+  user.save(function(err){
     if(err)
       return res.send(err);
 
@@ -18,7 +18,7 @@ exports.postUser = function(req, res){
   });
 };
 
-exports.getUser = function(req, res){
+exports.getUsers = function(req, res){
   userSchema.find(function(err, dogs){
   if(err)
     return res.send(err);
@@ -27,3 +27,31 @@ exports.getUser = function(req, res){
     return res.json(dogs);
   }
 )};
+
+exports.getUser = function(req, res){
+  userSchema.findById({_id:req.params.user_id}, function(err, dog){
+    if (err)
+      return res.send(err);
+
+      console.log(dog);
+      return res.json(dog);
+  });
+};
+
+exports.editUser = function(req, res){
+  userSchema.findById(req.params.user_id, function(err, res){
+    if(err)
+      return res.send(err);
+  });
+
+  //Make edits here, only changing the name currently because not sure what needs to be changed by the user.
+  user.name = req.body.name;
+
+  user.save(function(err){
+    if(err)
+      return res.send(err);
+
+      return res.json(user);
+  });
+
+};

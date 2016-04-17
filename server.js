@@ -17,9 +17,13 @@
 
   router.route('/user')
     .post(appRoutes.postUser)
-    .get(appRoutes.getUser);
+    .get(appRoutes.getUsers);
 
-  
+  router.route('/user/:user_id')
+    .post(appRoutes.getUser);
+
+
+
 
   mongoose.connect(mongoUri);
   mongoose.connection.once('open', function() {
