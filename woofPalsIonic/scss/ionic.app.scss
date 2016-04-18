@@ -15,6 +15,14 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 $royal:                           #009788 !default;
+$primary-color:                   #FFD519 !default;
+$light-green:                     #8DDFBA !default;
+$amber:                           #EAA93C !default;
+$dark-gray:                       #464646 !default;
+
+// $primary-color-dark:              darken($primary-color, 5%) !default;
+
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -22,5 +30,5 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 #login-button3 {
-  background-color: $royal;
+  background-color: $primary-color-dark;
 }
