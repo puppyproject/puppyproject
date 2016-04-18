@@ -10,13 +10,13 @@ angular.module('app.routes', [])
 
 
   .state('tabsController', {
-    url: '/page1',
+    url: '/tabs',
     templateUrl: 'templates/tabsController.html',
     abstract:true
   })
 
   .state('login', {
-    url: '/page5',
+    url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
@@ -59,9 +59,9 @@ angular.module('app.routes', [])
         controller: 'woofsCtrl'
       }
     }
-  })
+  });
 
-$urlRouterProvider.otherwise('')
+$urlRouterProvider.otherwise('/tabs/home');
 
 
 
