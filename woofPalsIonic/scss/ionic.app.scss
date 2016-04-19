@@ -16,7 +16,7 @@ $dark:                            #444 !default;
 */
 $royal:                           #009788 !default;
 $primary-color:                   #FFD519 !default;
-$light-green:                     #8DDFBA !default;
+$positive:                        #8DDFBA !default;
 $amber:                           #EAA93C !default;
 $dark-gray:                       #464646 !default;
 
@@ -29,6 +29,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-#login-button3 {
-  background-color: $primary-color-dark;
+
+#submitButton {
+  background-color: $positive;
+  color: $dark-gray;
 }
