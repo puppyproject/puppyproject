@@ -29,6 +29,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@import "./fonts.scss";
+
 
 #submitButton {
   background-color: $positive;
