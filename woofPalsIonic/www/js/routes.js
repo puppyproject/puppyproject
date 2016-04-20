@@ -57,7 +57,7 @@ angular.module('app.routes', [])
     }
   });
 
-$urlRouterProvider.otherwise('/tabs/home');
+$urlRouterProvider.otherwise('/login');
 
 
 
