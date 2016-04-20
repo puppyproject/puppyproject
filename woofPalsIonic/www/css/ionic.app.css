@@ -9732,15 +9732,15 @@ a.button {
   transition-duration: 0s; }
 
 @font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/wp-ico.eot?2a9l50");
-  src: url("../fonts/wp-ico.eot?2a9l50#iefix") format("embedded-opentype"), url("../fonts/wp-ico.ttf?2a9l50") format("truetype"), url("../fonts/wp-ico.woff?2a9l50") format("woff"), url("../fonts/wp-ico.svg?2a9l50#icomoon") format("svg");
+  font-family: 'wp-ico';
+  src: url("../fonts/wp-ico.eot?penim3");
+  src: url("../fonts/wp-ico.eot?penim3#iefix") format("embedded-opentype"), url("../fonts/wp-ico.ttf?penim3") format("truetype"), url("../fonts/wp-ico.woff?penim3") format("woff"), url("../fonts/wp-ico.svg?penim3#wp-ico") format("svg");
   font-weight: normal;
   font-style: normal; }
 
-[class^="icon-"], [class*=" icon-"] {
+i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'wp-ico' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -9751,14 +9751,93 @@ a.button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-bonecheck:before {
+  content: "\e902"; }
+
+.icon-xbone:before {
+  content: "\e903"; }
+
 .icon-sniffs:before {
   content: "\e900"; }
 
 .icon-woofs:before {
   content: "\e901"; }
 
-.icon-xbone:before {
-  content: "\e902"; }
+h3 {
+  color: #464646; }
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333; }
+
+.center {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.dogs-cards-img {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 6px; }
+
+#home-dogs-cards {
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px; }
+
+#x-button {
+  padding: 15px;
+  margin-right: 40px;
+  border-radius: 50%;
+  background-color: #ef473a;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: 6px solid white;
+  color: white;
+  font-size: 3rem; }
+
+#check-button {
+  padding: 15px;
+  border-radius: 50%;
+  background-color: #82C1A7;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: 6px solid white;
+  color: white;
+  font-size: 3rem; }
+
+#dog-info-button {
+  padding: 8px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  background-color: #11c1f3;
+  color: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: 4px solid white;
+  font-size: 1.3rem; }
 
 #submitButton {
   background-color: #8DDFBA;
