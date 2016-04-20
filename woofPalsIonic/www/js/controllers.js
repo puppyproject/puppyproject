@@ -8,8 +8,13 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('homeCtrl', function($scope) {
 
+.controller('homeCtrl', function($scope, $ionicPopover) {
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
 })
 
 .controller('sniffsCtrl', function($scope) {
