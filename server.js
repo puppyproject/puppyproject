@@ -8,8 +8,8 @@
        router = express.Router(),
        appRoutes = require('./serverResources/routes/appRoutes.js'),
        User = require('./serverResources/schemas/User.js'),
-       passport = require('passport'),
-       session = require('express-session'),
+      //  passport = require('passport'),
+      //  session = require('express-session'),
        FacebookStrategy = require('passport-facebook'),
        facebookAuth = require('./serverResources/config/facebookAuth.js'),
        jwt = require('jwt-simple'),
@@ -20,16 +20,26 @@
   app.use(bodyParser.urlencoded({extended:true}));
   app.use(cors());
   app.use(express.static(__dirname + '/public'));
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());
+  // app.use(passport.session());
   app.use('/api', router);
 
   router.route('/user')
     .post(appRoutes.postUser)
     .get(appRoutes.getUsers);
 
-  router.route('/user/:user_id')
-    .post(appRoutes.getUser);
+  router.route('/user/:User_id')
+    .get(appRoutes.getProfile)
+    .put(appRoutes.editUser)
+    .delete(appRoutes.statusChange);
+
+  router.route('/user/:User_id/dogs')
+    .put(appRoutes.editDogs);
+
+  router.route('/user/:User_id/connections')
+    .put(appRoutes.postPossibles);
+
+
 
   app.post('/auth/facebook', facebookAuth);
 

@@ -10,7 +10,7 @@ module.exports = function(req, res){
   var params = {
     client_id: req.body.clientId,
     redirect_uri:req.body.redirectUri,
-    client_secret:config.FACEBOOK_SECRET,
+    client_secret:config.FACEBOOK_SECRET, // still need to implement the facebook secret in the config file.
     code:req.body.code
   };
 
