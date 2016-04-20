@@ -26,7 +26,6 @@ angular.module('app.controllers', [])
   }).then(function(popover) {
     $scope.popover = popover;
   });
-
 })
 
 .controller('sniffsCtrl', function($scope) {
