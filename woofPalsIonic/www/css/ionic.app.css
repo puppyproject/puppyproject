@@ -9799,8 +9799,12 @@ i {
   font-size: 1.3rem; }
 
 #submitButton {
-  background-color: #8DDFBA;
-  color: #464646; }
+  background-color: #82C1A7;
+  color: white; }
+
+#take-picture-button {
+  background-color: #EAA93C;
+  color: white; }
 
 h3 {
   color: #464646; }

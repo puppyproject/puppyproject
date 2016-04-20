@@ -2,11 +2,14 @@
     <ion-content padding="true" class="has-header">
         <div class="spacer" style="width: 283.316px; height: 19.9792px;"></div>
         <a style="display:block;" href="mailto:">
-            <div style="text-align:center;">
-                <img src="img/ahDjLmFkTYCgzSSqpVJr_1.jpg" class="dogs-cards-img" width="100%" height="auto">
+            <div class="item item-image"style="text-align:center;">
+                <img ng-src="{{pictureUrl}}" class="dogs-cards-img" width="100%" height="auto">
             </div>
         </a>
         <div class="spacer" style="width: 283.316px; height: 19.9826px;"></div>
+        <div class="padding">
+          <button id="take-picture-button" ng-click="takePicture()" class="button button-block"><i class="icon ion-camera"></i>  Take Picture</button>
+        </div>
         <form class="list">
             <label class="item item-input">
                 <span class="input-label">Dog Name</span>
@@ -32,7 +35,7 @@
             <label class="item item-input">
                 <span class="input-label">Description</span><textarea placeholder="Description"> </textarea>
             </label>
-            <button id="submitButton" class="button button-block">Submit</button>
+            <button id="submitButton" class="button button-block"><i class="icon ion-paper-airplane"></i>  Submit</button>
 
         </form>
     </ion-content>

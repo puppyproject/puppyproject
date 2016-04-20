@@ -1,6 +1,11 @@
 ////// This is USER.html
 
 #submitButton {
-  background-color: $positive;
-  color: $dark-gray;
+  background-color: $check-button-green;
+  color: white;
+}
+
+#take-picture-button {
+  background-color: $amber;
+  color: white;
 }
