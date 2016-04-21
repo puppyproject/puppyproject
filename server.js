@@ -37,7 +37,8 @@
     .put(appRoutes.editDogs);
 
   router.route('/user/:User_id/connections')
-    .put(appRoutes.postPossibles);
+    .put(appRoutes.postPossibles)
+    .get(appRoutes.getConnections);
 
 
 
