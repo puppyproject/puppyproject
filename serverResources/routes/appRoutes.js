@@ -77,64 +77,59 @@ exports.statusChange = function(req, res){
 };
 
 //Need to make a route that posts to the possibles, connections and rejections reference arrays
-// 
-// exports.postPossibles = function (req, res){
-//   // console.log(res);
-//   User.findById(req.params.User_id).then(function(user){
-//     if(!user){
-//       console.log(111,"gettingError");
-//       return res.status(404).end();
-//     }
-//     User.findById(req.body._id).then(function(user2) {
-//       if(!user) {
-//         return res.status(404).end();
-//       }
-//
-//       if( user.possibles.length === 0 && user2.possibles.length === 0) {
-//         user.possibles.push(user2._id);
-//         user2.possibles.push(user._id);
-//         user.save();
-//         user2.save();
-//         res.status(200).end();
-//       }
-//       else(user.possibles.length === 0) {
-//
-//       }
-//     });
-//   });
-//       //Checking for a match in Connections and Possibles
-//       // var arr = user.possibles;
-//       // if (arr.length === 0) {
-//       //   if(user.connections.length === 0) {
-//       //     user.possibles.push(req.body);
-//       //     user.save();
-//       //     res.status(200).end();
-//       //   }
-//       // }
-//       // for(var i = 0; i < arr.length; i++){
-//       //   if(arr[i]._id === req.body._id){
-//       //     console.log(req.body);
-//       //     user.connections.push(req.body._id);
-//       //     user.save();
-//       //     res.status(200).end();
-//       //   }
-//       //
-//       //   else {
-//       //   console.log(222, req.body);
-//       //   user.possibles.push(req.body._id);
-//       //   user.save();
-//       //   res.status(200).end();
-//   //     }
-//   //   }
-//   // });
-// };
+
+exports.postPossibles = function (req, res){
+  User.findById(req.params.User_id).then(function(user){
+    if(!user){
+      console.log(111,"gettingError");
+      return res.status(404).end();
+
+    }
+    User.findById(req.body._id, function( err, user2) {
+      // console.log(44444, user2);
+      if(!user2) {
+        console.log(6666);
+        return res.status(404).end();
+      }
+      // var arr = user.possibles;
+      // var arr2 = user2.possibles;
+
+      if(user2.possibles.length === 0) {
+          console.log(555555);
+        user.possibles.push(user2._id);
+        user.save();
+        res.status(200).end();
+      }
+      else if(user2.possibles.length > 0){
+        console.log(93939, "yes");
+        for (var i = 0; i <= user2.possibles.length - 1; i++){
+         console.log(i, user2.possibles.length);
+         console.log(73837, user2.possibles[i]);
+         console.log(848484, user._id);
+          if(user2.possibles[i] === user._id){
+            console.log(1111, user, user2);
+            user.connections.push(user2);
+            user2.connections.push(user);
+            console.log(2222, user, user2);
+            user.save();
+            user2.save();
+            console.log(3333, user, user2);
+            res.status(200).end();
+          }
+          else {
+            // user.possibles.push(user2);
+            // user.save();
+            console.log(22222, user2);
+            res.status(200).end();
+          }
+        }
+      }
+    });
+  });
+};
 
 exports.getConnections = function(req, res){
-  User.findById(req.params.User_id).populate(
-    {
-      path:"connections",
-      populate:{path:"connections"}
-    }).then(function(user){
+  User.findById(req.params.User_id).populate("connections").then(function(user){
       if(!user)
         return res.status(404).end();
 
