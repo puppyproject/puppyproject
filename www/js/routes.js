@@ -1,19 +1,19 @@
-angular.module('app.routes', ['satellizer'])
+angular.module('app.routes', [])
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider, $authProvider) {
-      var commonConfig = {
-        popupOptions: {
-          location: 'no',
-          toolbar: 'yes',
-          width: window.screen.width,
-          height: window.screen.height
-        }
-      };
+.config(function($stateProvider, $urlRouterProvider) {
+      // var commonConfig = {
+      //   popupOptions: {
+      //     location: 'no',
+      //     toolbar: 'yes',
+      //     width: window.screen.width,
+      //     height: window.screen.height
+      //   }
+      // };
 
-  $authProvider.facebook(angular.extend({}, commonConfig, {
-      clientId: '617529111729160',
-      url: 'http://localhost:8873/auth/facebook'
-    }));
+  // $authProvider.facebook(angular.extend({}, commonConfig, {
+  //     clientId: '617529111729160',
+  //     url: 'http://localhost:8873/auth/facebook'
+  //   }));
 
 
   $stateProvider
@@ -70,7 +70,5 @@ angular.module('app.routes', ['satellizer'])
   });
 
   $urlRouterProvider.otherwise('/login');
-
-
 
 });

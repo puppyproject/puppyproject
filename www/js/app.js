@@ -7,9 +7,9 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if (window.cordova && window.cordova.InAppBrowser) {
-      window.open = window.cordova.InAppBrowser.open;
-    }
+    // if (window.cordova && window.cordova.InAppBrowser) {
+    //   window.open = window.cordova.InAppBrowser.open;
+    // }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
@@ -17,11 +17,11 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
   });
 })
 
-.config(function($authProvider) {
-  $authProvider.facebook({
-      clientId: 'Facebook App ID'
-    });
-})
+// .config(function($authProvider) {
+//   $authProvider.facebook({
+//       clientId: 'Facebook App ID'
+//     });
+// })
 
 // All this does is allow the message
 // to be sent when you tap return

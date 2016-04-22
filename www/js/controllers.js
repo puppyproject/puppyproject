@@ -1,32 +1,49 @@
 angular.module('app.controllers', [])
 
-.controller('loginCtrl', function($scope, $ionicPopup, $auth) {
+// .controller('loginCtrl', function($scope, $ionicPopup, $auth) {
+//
+//     $scope.authenticate = function(provider) {
+//       $auth.authenticate(provider)
+//         .then(function() {
+//           $ionicPopup.alert({
+//             title: 'Success',
+//             content: 'You have successfully logged in!'
+//           });
+//         })
+//         .catch(function(response) {
+//           $ionicPopup.alert({
+//             title: 'Error',
+//             content: response.data ? response.data || response.data.message : response
+//           });
+//
+//         });
+//     };
+//
+//
+//     $scope.logout = function() {
+//       $auth.logout();
+//     };
+//
+//     $scope.isAuthenticated = function() {
+//       return $auth.isAuthenticated();
+//     };
+//   })
 
-    $scope.authenticate = function(provider) {
-      $auth.authenticate(provider)
-        .then(function() {
-          $ionicPopup.alert({
-            title: 'Success',
-            content: 'You have successfully logged in!'
-          });
-        })
-        .catch(function(response) {
-          $ionicPopup.alert({
-            title: 'Error',
-            content: response.data ? response.data || response.data.message : response
-          });
+  .controller('loginCtrl', function($scope, $state, $ionicHistory, User) {
 
-        });
-    };
+    // $scope.credentials = {
+    //   user: '',
+    //   password: ''
+    // };
+    //
+    // $scope.login = function() {
+    //   User.login($scope.credentials)
+    //     .then(function() {
+    //       $ionicHistory.nextViewOptions({historyRoot: true});
+    //       $state.go('tabsController.home');
+    //     });
+    // };
 
-
-    $scope.logout = function() {
-      $auth.logout();
-    };
-
-    $scope.isAuthenticated = function() {
-      return $auth.isAuthenticated();
-    };
   })
 
 .controller('userCtrl', function($scope, $cordovaCamera) {
