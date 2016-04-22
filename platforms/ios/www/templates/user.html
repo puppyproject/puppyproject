@@ -1,0 +1,42 @@
+<ion-view title='<img class="title-image" src="./img/letter-logo.png"/>' id="page8" style="background-color:#F1F0F0;">
+    <ion-content padding="true" class="has-header">
+        <div class="spacer" style="width: 283.316px; height: 19.9792px;"></div>
+        <a style="display:block;" href="mailto:">
+            <div class="item item-image"style="text-align:center;">
+                <img ng-src="{{pictureUrl}}" class="dogs-cards-img" width="100%" height="auto">
+            </div>
+        </a>
+        <div class="spacer" style="width: 283.316px; height: 19.9826px;"></div>
+        <div class="padding">
+          <button id="take-picture-button" ng-click="takePicture()" class="button button-block"><i class="icon ion-camera"></i>  Take Picture</button>
+        </div>
+        <form class="list">
+            <label class="item item-input">
+                <span class="input-label">Dog Name</span>
+                <input type="text" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Age</span>
+                <input type="text" placeholder="">
+            </label>
+            <label class="item item-select">
+                <span class="input-label">Size</span>
+                <select>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                </select>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Breed</span>
+                <input type="text" placeholder="">
+            </label>
+            <ion-toggle toggle-class="toggle-balanced" ng-checked="true">Neutered</ion-toggle>
+            <label class="item item-input">
+                <span class="input-label">Description</span><textarea placeholder="Description"> </textarea>
+            </label>
+            <button id="submitButton" class="button button-block"><i class="icon ion-paper-airplane"></i>  Submit</button>
+
+        </form>
+    </ion-content>
+</ion-view>

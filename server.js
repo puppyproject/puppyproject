@@ -19,7 +19,7 @@
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));
   app.use(cors());
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/www'));
   // app.use(passport.initialize());
   // app.use(passport.session());
   app.use('/api', router);
@@ -39,7 +39,6 @@
   router.route('/user/:User_id/connections')
     // .put(appRoutes.postPossibles)
     .get(appRoutes.getConnections);
-
 
 
   app.post('/auth/facebook', facebookAuth);

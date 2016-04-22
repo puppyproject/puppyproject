@@ -1,0 +1,21 @@
+{
+  "name": "woofpals",
+  "homepage": "https://github.com/puppyproject/puppyproject",
+  "authors": [
+    "McKmillions <zachmckimmins@gmail.com>"
+  ],
+  "description": "app",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "satellizer": "^0.14.0"
+  }
+}

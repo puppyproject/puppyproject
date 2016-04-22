@@ -1,6 +1,7 @@
 var request = require('request'),
     qs = require('querystring'),
     makeSendtoken = require('./jwt.js'),
+    secret = require('./secrets.js'),
     User = require('../schemas/User.js');
 
 module.exports = function(req, res){
@@ -10,7 +11,7 @@ module.exports = function(req, res){
   var params = {
     client_id: req.body.clientId,
     redirect_uri:req.body.redirectUri,
-    client_secret:config.FACEBOOK_SECRET, // still need to implement the facebook secret in the config file.
+    client_secret:secret.FACEBOOK_SECRET, // still need to implement the facebook secret in the config file.
     code:req.body.code
   };
 
