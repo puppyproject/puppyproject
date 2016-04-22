@@ -40,6 +40,9 @@
     .put(appRoutes.postPossibles)
     .get(appRoutes.getConnections);
 
+  router.route('/user/:User_id/rejections')
+    .put(appRoutes.postRejections);
+
 
 
   app.post('/auth/facebook', facebookAuth);

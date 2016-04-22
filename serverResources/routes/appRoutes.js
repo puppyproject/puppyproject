@@ -113,8 +113,6 @@ exports.postPossibles = function (req, res){
             user2.connections.push(user);
             //enter slice here
             user2.possibles.splice(i, 1);
-
-
             // console.log(2222, user, user2);
             user2.save();
             user.save();
@@ -139,6 +137,21 @@ exports.getConnections = function(req, res){
       if(!user)
         return res.status(404).end();
 
+      return res.status(200).end();
+  });
+};
+
+exports.postRejections = function(req, res){
+  User.findById(req.params.User_id, function(err, user){
+      if(!user){
+        return res.status(404).end();
+      }
+
+      console.log(2222, user);
+      user.rejections.push(req.body._id);
+      user.save();
+      console.log("Rejection Pushed");
+      console.log(req.body._id);
       return res.status(200).end();
   });
 };
