@@ -107,10 +107,14 @@ exports.postPossibles = function (req, res){
          console.log(73837, user2.possibles[i]);
          console.log(848484, user._id);
           if(user2.possibles.indexOf(user._id) > -1){
-            console.log('user is a possible connection');
+            // console.log('user is a possible connection');
             // console.log(1111, user, user2);
             user.connections.push(user2);
             user2.connections.push(user);
+            //enter slice here
+            user2.possibles.splice(i, 1);
+
+
             // console.log(2222, user, user2);
             user2.save();
             user.save();
@@ -118,10 +122,10 @@ exports.postPossibles = function (req, res){
             res.status(200).end();
           }
           else {
-            // user.possibles.push(user2);
-            // user.save();
+            user.possibles.push(user2);
+            user.save();
             // console.log(22222, user2);
-            console.log('user not a connection');
+            // console.log('user not a connection');
             res.status(200).end();
           }
         }
