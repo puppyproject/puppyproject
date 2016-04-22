@@ -10,7 +10,7 @@
        User = require('./serverResources/schemas/User.js'),
       //  passport = require('passport'),
       //  session = require('express-session'),
-       FacebookStrategy = require('passport-facebook'),
+      //  FacebookStrategy = require('passport-facebook'),
        facebookAuth = require('./serverResources/config/facebookAuth.js'),
        jwt = require('jwt-simple'),
        makeSendtoken = require('./serverResources/config/jwt.js');

@@ -86,13 +86,13 @@ exports.postPossibles = function (req, res){
 
     }
     User.findById(req.body._id, function( err, user2) {
-      // console.log(44444, user2);
+      console.log(44444, user2);
       if(!user2) {
         console.log(6666);
         return res.status(404).end();
       }
-      // var arr = user.possibles;
-      // var arr2 = user2.possibles;
+      var arr = user.possibles;
+      var arr2 = user2.possibles;
 
       if(user2.possibles.length === 0) {
           console.log(555555);
@@ -106,20 +106,22 @@ exports.postPossibles = function (req, res){
          console.log(i, user2.possibles.length);
          console.log(73837, user2.possibles[i]);
          console.log(848484, user._id);
-          if(user2.possibles[i] === user._id){
-            console.log(1111, user, user2);
+          if(user2.possibles.indexOf(user._id) > -1){
+            console.log('user is a possible connection');
+            // console.log(1111, user, user2);
             user.connections.push(user2);
             user2.connections.push(user);
-            console.log(2222, user, user2);
-            user.save();
+            // console.log(2222, user, user2);
             user2.save();
-            console.log(3333, user, user2);
+            user.save();
+            // console.log(3333, user, user2);
             res.status(200).end();
           }
           else {
             // user.possibles.push(user2);
             // user.save();
-            console.log(22222, user2);
+            // console.log(22222, user2);
+            console.log('user not a connection');
             res.status(200).end();
           }
         }
