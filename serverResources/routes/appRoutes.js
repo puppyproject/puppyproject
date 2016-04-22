@@ -30,7 +30,7 @@ exports.getUsers = function(req, res){
     console.log(users);
     return res.json(users);
   }
-)};
+);};
 
 //api/user/:User_id GET
 exports.getProfile = function(req, res){
@@ -50,7 +50,7 @@ exports.editUser = function(req, res){
 
     res.status(200).end();
 }
-)};
+);};
 
 exports.editDogs = function(req, res){
   User.findById(req.params.User_id).then(function(user){
@@ -77,7 +77,7 @@ exports.statusChange = function(req, res){
 };
 
 //Need to make a route that posts to the possibles, connections and rejections reference arrays
-// 
+//
 // exports.postPossibles = function (req, res){
 //   // console.log(res);
 //   User.findById(req.params.User_id).then(function(user){

@@ -1,0 +1,28 @@
+<ion-view title="Login" hide-nav-bar="true" id="page5" style="background-color:#90DEBB; background-image: url(./img/bg.png);">
+    <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="false">
+        <div class="spacer" style="width: 300px; height: 97.9722px;"></div>
+        <div>
+
+
+
+
+        </div>
+
+        <div class="list">
+          <h2>Sign up</h2>
+          <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="user.name">
+          </label>
+          <label class="item item-input">
+            <input type="password" placeholder="Password" ng-model="user.password">
+          </label>
+        </div>
+        <button class="button button-full button-balanced" ng-click="signup()">
+          Sign up
+        </button>
+        <button class="button button-royal button-full" ui-sref="login">Login instead?</button>
+        <!-- <form class="list">
+            <button id="login-button3" class="button button-royal  button-block icon-left ion-social-facebook" ui-sref="tabsController.home">  Login with Facebook</button>
+        </form> -->
+    </ion-content>
+</ion-view>
