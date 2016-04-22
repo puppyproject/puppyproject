@@ -14,7 +14,7 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
     }
   });
 })
-
+// comment
 // All this does is allow the message
 // to be sent when you tap return
 .directive('input', function($timeout) {
