@@ -31,10 +31,10 @@ angular.module('app.services', [])
       $http.defaults.headers.common.Authorization = undefined;
       window.localStorage.removeItem(LOCAL_TOKEN_KEY);
     }
-// change
+
     var register = function(user) {
       return $q(function(resolve, reject) {
-        $http.post(API_ENDPOINT.url + '/register', user).then(function(result) {
+        $http.post('http://127.0.0.1:8100/api/signup', user).then(function(result) {
           if (result.data.success) {
             resolve(result.data.msg);
           } else {
