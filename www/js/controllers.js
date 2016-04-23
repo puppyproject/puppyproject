@@ -2,7 +2,7 @@ angular.module('app.controllers', [])
 
 .controller('loginCtrl', function($scope, loginSrvc,  $ionicPopup, $state) {
   $scope.user = {
-    name: '',
+    email: '',
     password: ''
   };
 
@@ -20,7 +20,7 @@ angular.module('app.controllers', [])
 
 .controller('registerCtrl', function($scope, loginSrvc, $ionicPopup, $state) {
   $scope.user = {
-    name: '',
+    email: '',
     password: ''
   };
 
