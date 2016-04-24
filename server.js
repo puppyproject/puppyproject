@@ -73,7 +73,8 @@
   // route to authenticate a user (POST http://localhost:8080/api/authenticate)
   router.post('/authenticate', function(req, res) {
     User.findOne({
-      email: req.body.email
+      email: req.body.email,
+      password: req.body.password
     }, function(err, user) {
       if (err) throw err;
 
