@@ -47,13 +47,15 @@ angular.module('app.services', [])
     var login = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/authenticate', user).then(function(result) {
+          console.log(123123, result);
           if (result.data.success) {
+            var userInfo = result.data.user;
             storeUserCredentials(result.data.token);
             console.log('token: ', result.data.token);
-            resolve(result.data.msg);
+            resolve(result.data.user);
             console.log('Login success: ', result.data.token);
           } else {
-            reject(result.data.msg);
+            reject(result.data.user);
             console.log('Login Failed: ', result.data.token);
           }
         });

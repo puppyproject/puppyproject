@@ -88,7 +88,7 @@
             console.log('Secret', config.secret);
             var token = jwt.encode(user, config.secret);
             // return the information including token as JSON
-            res.json({success: true, token: 'JWT ' + token});
+            res.json({success: true, token: 'JWT ' + token, user: user});
           } else {
             res.send({success: false, msg: 'Authentication failed. Wrong password.'});
           }

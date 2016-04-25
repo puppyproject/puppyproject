@@ -8,9 +8,10 @@ angular.module('app.controllers', [])
 
   $scope.login = function(user) {
     console.log('Logging In:', user);
-    loginSrvc.login($scope.user).then(function(msg) {
+    loginSrvc.login($scope.user).then(function(user) {
       $state.go('tabsController.home');
-      console.log('User: ', $scope.user);
+      console.log('User: ', user);
+      // console.log('User Id: ', $scope.user._id);
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
