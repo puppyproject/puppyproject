@@ -3,7 +3,7 @@
        bodyParser = require('body-parser'),
        cors = require('cors'),
        mongoose = require('mongoose'),
-       port = 8100,
+       port = 8101,
        mongoUri = 'mongodb://localhost:27017/pawpals',
        router = express.Router(),
        appRoutes = require('./serverResources/routes/appRoutes.js'),
@@ -14,7 +14,7 @@
        morgan = require('morgan'),
       //  session = require('express-session'),
       //  FacebookStrategy = require('passport-facebook'),
-       jwt = require('jwt-simple'),
+      //  jwt = require('jwt-simple'),
        makeSendtoken = require('./serverResources/config/jwt.js');
 
 
@@ -52,7 +52,7 @@
 
   router.post('/signup', function(req, res){
     if (!req.body.email || !req.body.password) {
-   res.json({success: false, msg: 'Please pass name and password.'});
+   res.json({success: false, msg: 'Please pass email and password.'});
  } else {
    var newUser = new User({
      email: req.body.email,
@@ -63,7 +63,7 @@
    newUser.save(function(err) {
     console.log(err);
      if (err) {
-       return res.json({success: false, msg: 'Username already exists.'});
+       return res.json({success: false, msg: 'Email already exists.'});
      }
      res.json({success: true, msg: 'Successful created new user.'});
    });
@@ -73,11 +73,13 @@
   // route to authenticate a user (POST http://localhost:8080/api/authenticate)
   router.post('/authenticate', function(req, res) {
     User.findOne({
-      email: req.body.email
+      email: req.body.email,
+      password: req.body.password
     }, function(err, user) {
-      if (err) throw err;
-
-      if (!user) {
+      if (err) {
+        throw err;
+      }
+      else if (!user) {
         res.send({success: false, msg: 'Authentication failed. User not found.'});
       } else {
         // check if password matches

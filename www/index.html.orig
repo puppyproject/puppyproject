@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="./css/ionic.app.css">
 
     <!-- cordova script (this will be a 404 during development) -->
+<<<<<<< HEAD
+    <!-- <script src="cordova.js"></script>
+    <script src="cordova.js"></script> -->
+=======
+>>>>>>> 8fc1a2a27c8395347b13db3596f1296b639abaf3
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above

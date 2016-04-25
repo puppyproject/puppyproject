@@ -34,7 +34,7 @@ angular.module('app.services', [])
 
     var register = function(user) {
       return $q(function(resolve, reject) {
-        $http.post('http://127.0.0.1:8100/api/signup', user).then(function(result) {
+        $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
           if (result.data.success) {
             resolve(result.data.msg);
           } else {
@@ -43,6 +43,8 @@ angular.module('app.services', [])
         });
       });
     };
+
+
 
     var login = function(user) {
       return $q(function(resolve, reject) {
