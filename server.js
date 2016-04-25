@@ -65,7 +65,7 @@ var   express = require('express'),
      if (err) {
        return res.json({success: false, msg: 'Username already exists.'});
      }
-     return res.json({success: true, msg: newUser});
+     return res.json({success: true}, newUser);
    });
  }
   });
