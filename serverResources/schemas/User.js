@@ -20,7 +20,8 @@ var userSchema = new Schema({
             size:{type:String},
             breed:{type:String},
             description:{type:String},
-            fixed:{type:Boolean}
+            fixed:{type:Boolean},
+            image:{data: Buffer, contentType:String}
         }],
       connections:[{type:Schema.Types.ObjectId, ref:"User"}],
       rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
