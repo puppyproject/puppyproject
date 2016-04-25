@@ -36,7 +36,7 @@ angular.module('app.services', [])
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
           if (result.data.success) {
-            resolve(result.data.msg);
+            resolve(result.data);
           } else {
             reject(result.data.msg);
           }
@@ -62,25 +62,6 @@ angular.module('app.services', [])
       });
     };
 
-  //   var login = function (user) {
-  //   var dfd = $q.defer();
-  //   $http({
-  //     method: 'POST',
-  //     url: API_ENDPOINT.url + '/authenticate',
-  //     data: user
-  //   }).then(function (user) {
-  //     storeUserCredentials(user.data.token);
-  //     console.log('token: ', user.data.token);
-  //     console.log(user.data);
-  //     dfd.resolve(user.data.msg);
-  //     // currentUser = user.data;
-  //     // dfd.resolve(user);
-  //   }).catch(function (err) {
-  //     dfd.reject(err);
-  //   });
-  //   return dfd.promise;
-  // };
-
     var logout = function() {
       destroyUserCredentials();
     };
@@ -103,6 +84,32 @@ angular.module('app.services', [])
         }[response.status], response);
         return $q.reject(response);
       }
+    };
+  })
+
+  .service('dogSrvc', function($q, $http, API_ENDPOINT) {
+    this.addDog = function(user, dog) {
+      var dfd = $q.defer();
+      console.log('User:', user);
+      $http({
+        method: 'PUT',
+        url: API_ENDPOINT.url + '/user/' + user + '/dogs',
+        data: {
+          name: dog.name,
+          age: dog.age,
+          gender: 'It',
+          size: dog.size,
+          breed: dog.breed,
+          description: 'poopy dog',
+          fixed: false
+        }
+      }).then(function(res) {
+        dfd.resolve(res);
+        console.log('Dog: ', dog);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
     };
   })
 

@@ -9,6 +9,7 @@ angular.module('app.controllers', [])
   $scope.login = function(user) {
     console.log('Logging In:', user);
     loginSrvc.login($scope.user).then(function(user) {
+      loginSrvc.user = user; //on the login srvc persists the user data
       $state.go('tabsController.home');
       console.log('User: ', user);
       // console.log('User Id: ', $scope.user._id);
@@ -28,12 +29,15 @@ angular.module('app.controllers', [])
   };
 
   $scope.signup = function() {
-    loginSrvc.register($scope.user).then(function(msg) {
+    loginSrvc.register($scope.user).then(function(user) {
       $state.go('tabsController.user');
       var alertPopup = $ionicPopup.alert({
         title: 'Register success!',
-        template: msg
+        template: user
       });
+      loginSrvc.user = user; //on the login srvc persists the user data
+      console.log('user', user);
+      console.log('loginsrvc.user', loginSrvc.user);
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Register failed!',
@@ -43,7 +47,7 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('userCtrl', function($scope, $cordovaCamera) {
+.controller('userCtrl', function($scope, $cordovaCamera, dogSrvc, loginSrvc, $ionicPopup) {
   $scope.pictureUrl = 'http://placehold.it/300x300';
 
   $scope.takePicture = function() {
@@ -58,6 +62,27 @@ angular.module('app.controllers', [])
       $scope.pictureUrl = "data:image/jpeg;base64," + data;
     }, function(error) {
       console.log('camera error:' + angular.toJson(data));
+    });
+  };
+
+  $scope.addMyDog = {};
+
+  $scope.addDog = function() {
+      console.log('addMyDog: ', $scope.addMyDog);
+      console.log('User(id): ', loginSrvc.user._id);
+    dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Welcome to Woofpals ',
+          template: res.data
+        });
+        // $scope.addMyDog = res.data.user.dogs;
+        console.log($scope.addMyDog);
+        console.log('res' , res);
+      }, function(errMsg) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Register failed!',
+          template: errMsg
+        });
     });
   };
 })

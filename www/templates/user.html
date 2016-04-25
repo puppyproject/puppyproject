@@ -10,18 +10,18 @@
         <div class="padding">
           <button id="take-picture-button" ng-click="takePicture()" class="button button-block"><i class="icon ion-camera"></i>  Take Picture</button>
         </div>
-        <form class="list">
+        <form class="list" ng-submit="addDog(addMyDog)">
             <label class="item item-input">
                 <span class="input-label">Dog Name</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="addMyDog.name">
             </label>
             <label class="item item-input">
                 <span class="input-label">Age</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="addMyDog.age">
             </label>
             <label class="item item-select">
                 <span class="input-label">Size</span>
-                <select>
+                <select ng-model="addMyDog.size">
                     <option>Small</option>
                     <option>Medium</option>
                     <option>Large</option>
@@ -29,13 +29,13 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">Breed</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="addMyDog.breed">
             </label>
-            <ion-toggle toggle-class="toggle-balanced" ng-checked="true">Neutered</ion-toggle>
+            <!-- <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle> -->
             <label class="item item-input">
-                <span class="input-label">Description</span><textarea placeholder="Description"> </textarea>
+                <!-- <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea> -->
             </label>
-            <button id="submitButton" class="button button-block"><i class="icon ion-paper-airplane"></i>  Submit</button>
+            <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
 
         </form>
     </ion-content>
