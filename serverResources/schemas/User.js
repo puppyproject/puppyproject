@@ -26,7 +26,8 @@ var userSchema = new Schema({
       rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
       possibles:[{type:Schema.Types.ObjectId, ref:"User"}],
       facebookId:String,
-      status:{type:String, enum:["active", "archived"]}
+      status:{type:String, enum:["active", "archived"]},
+      image:{data: Buffer, contentType:String}
   });
 
   userSchema.pre('save', function (next) {
