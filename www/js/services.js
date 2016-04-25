@@ -49,13 +49,35 @@ angular.module('app.services', [])
         $http.post(API_ENDPOINT.url + '/authenticate', user).then(function(result) {
           if (result.data.success) {
             storeUserCredentials(result.data.token);
+            console.log('token: ', result.data.token);
             resolve(result.data.msg);
+            console.log('Login success: ', result.data.token);
           } else {
             reject(result.data.msg);
+            console.log('Login Failed: ', result.data.token);
           }
         });
       });
     };
+
+  //   var login = function (user) {
+  //   var dfd = $q.defer();
+  //   $http({
+  //     method: 'POST',
+  //     url: API_ENDPOINT.url + '/authenticate',
+  //     data: user
+  //   }).then(function (user) {
+  //     storeUserCredentials(user.data.token);
+  //     console.log('token: ', user.data.token);
+  //     console.log(user.data);
+  //     dfd.resolve(user.data.msg);
+  //     // currentUser = user.data;
+  //     // dfd.resolve(user);
+  //   }).catch(function (err) {
+  //     dfd.reject(err);
+  //   });
+  //   return dfd.promise;
+  // };
 
     var logout = function() {
       destroyUserCredentials();

@@ -6,9 +6,11 @@ angular.module('app.controllers', [])
     password: ''
   };
 
-  $scope.login = function() {
+  $scope.login = function(user) {
+    console.log('Logging In:', user);
     loginSrvc.login($scope.user).then(function(msg) {
       $state.go('tabsController.home');
+      console.log('User: ', $scope.user);
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
@@ -59,6 +61,35 @@ angular.module('app.controllers', [])
   };
 })
 
+
+//does memberinfo endpoint work?
+.controller('InsideCtrl', function($scope, loginSrvc, API_ENDPOINT, $http, $state) {
+  $scope.destroySession = function() {
+    loginSrvc.logout();
+  };
+
+  $scope.getInfo = function() {
+    $http.get(API_ENDPOINT.url + '/memberinfo').then(function(result) {
+      $scope.memberinfo = result.data.msg;
+    });
+  };
+
+  $scope.logout = function() {
+    loginSrvc.logout();
+    $state.go('login');
+  };
+})
+
+.controller('AppCtrl', function($scope, $state, $ionicPopup, loginSrvc, AUTH_EVENTS) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    loginSrvc.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+})
 
 .controller('homeCtrl', function($scope, $ionicPopover) {
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
