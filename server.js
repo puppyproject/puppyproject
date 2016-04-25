@@ -1,4 +1,4 @@
-  var   express = require('express'),
+var   express = require('express'),
        app = express(),
        bodyParser = require('body-parser'),
        cors = require('cors'),
@@ -10,7 +10,7 @@
        User = require('./serverResources/schemas/User.js'),
        passport = require('passport'),
        jwt = require('jwt-simple'),
-       config = ("./serverResources/config/database.js"),
+       config = require("./serverResources/config/database.js"),
        morgan = require('morgan'),
       //  session = require('express-session'),
       //  FacebookStrategy = require('passport-facebook'),
@@ -84,6 +84,8 @@
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
             // if user is found and password is right create a token
+            console.log('User: ', user);
+            console.log('Secret', config.secret);
             var token = jwt.encode(user, config.secret);
             // return the information including token as JSON
             res.json({success: true, token: 'JWT ' + token});
@@ -98,8 +100,10 @@
 // route to a restricted info (GET http://localhost:8080/api/memberinfo)
   router.get('/memberinfo', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
+    console.log(req.headers);
     if (token) {
       var decoded = jwt.decode(token, config.secret);
+
       User.findOne({
         email: decoded.email
       }, function(err, user) {
