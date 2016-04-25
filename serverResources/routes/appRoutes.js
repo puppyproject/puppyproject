@@ -62,7 +62,7 @@ exports.editDogs = function(req, res){
     user.save();
     console.log(4444, user);
   });
-    return res.status(201).end();
+    return res.json(user).end();
   };
 
 exports.statusChange = function(req, res){
