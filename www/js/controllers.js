@@ -6,9 +6,11 @@ angular.module('app.controllers', [])
     password: ''
   };
 
-  $scope.login = function() {
-    loginSrvc.login($scope.user).then(function(msg) {
+  $scope.login = function(user) {
+    console.log('Logging In:', user);
+    loginSrvc.login($scope.user).then(function(user) {
       $state.go('tabsController.home');
+      console.log('User: ', user);
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
@@ -40,7 +42,7 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('userCtrl', function($scope, $cordovaCamera) {
+.controller('userCtrl', function($scope, $cordovaCamera, $http, dogSrvc) {
   $scope.pictureUrl = 'http://placehold.it/300x300';
 
   $scope.takePicture = function() {
@@ -57,8 +59,46 @@ angular.module('app.controllers', [])
       console.log('camera error:' + angular.toJson(data));
     });
   };
+
+  $scope.addMyDog = {};
+  console.log('addMyDog: ', $scope.addMyDog);
+  $scope.addDog = function() {
+   dogSrvc.addDog($scope.addMyDog, $scope.user._id).then(function(res){
+     console.log(res);
+       $ionicPopup.alert({title: 'Welcome to Woofpals ' + user.dogs.name,template: msg});
+     });
+ };
 })
 
+
+//does memberinfo endpoint work?
+.controller('InsideCtrl', function($scope, loginSrvc, API_ENDPOINT, $http, $state) {
+  $scope.destroySession = function() {
+    loginSrvc.logout();
+  };
+
+  $scope.getInfo = function() {
+    $http.get(API_ENDPOINT.url + '/memberinfo').then(function(result) {
+      $scope.memberinfo = result.data.msg;
+    });
+  };
+
+  $scope.logout = function() {
+    loginSrvc.logout();
+    $state.go('login');
+  };
+})
+
+.controller('AppCtrl', function($scope, $state, $ionicPopup, loginSrvc, AUTH_EVENTS) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    loginSrvc.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+})
 
 .controller('homeCtrl', function($scope, $ionicPopover) {
   $ionicPopover.fromTemplateUrl('templates/popover.html', {

@@ -10,7 +10,7 @@
        User = require('./serverResources/schemas/User.js'),
        passport = require('passport'),
        jwt = require('jwt-simple'),
-       config = ("./serverResources/config/database.js"),
+       config = require("./serverResources/config/database.js"),
        morgan = require('morgan'),
       //  session = require('express-session'),
       //  FacebookStrategy = require('passport-facebook'),
@@ -73,22 +73,22 @@
   // route to authenticate a user (POST http://localhost:8080/api/authenticate)
   router.post('/authenticate', function(req, res) {
     User.findOne({
-      email: req.body.email,
-      password: req.body.password
+      email: req.body.email
     }, function(err, user) {
-      if (err) {
-        throw err;
-      }
-      else if (!user) {
+      if (err) throw err;
+
+      if (!user) {
         res.send({success: false, msg: 'Authentication failed. User not found.'});
       } else {
         // check if password matches
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
             // if user is found and password is right create a token
+            console.log('User: ', user);
+            console.log('Secret', config.secret);
             var token = jwt.encode(user, config.secret);
             // return the information including token as JSON
-            res.json({success: true, token: 'JWT ' + token});
+            res.json({success: true, token: 'JWT ' + token, user: user});
           } else {
             res.send({success: false, msg: 'Authentication failed. Wrong password.'});
           }
@@ -100,8 +100,10 @@
 // route to a restricted info (GET http://localhost:8080/api/memberinfo)
   router.get('/memberinfo', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
+    console.log(req.headers);
     if (token) {
       var decoded = jwt.decode(token, config.secret);
+
       User.findOne({
         email: decoded.email
       }, function(err, user) {

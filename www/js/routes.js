@@ -4,7 +4,6 @@ angular.module('app.routes', [])
 
   $stateProvider
 
-
   .state('tabsController', {
     url: '/tabs',
     templateUrl: 'templates/tabsController.html',
@@ -65,6 +64,16 @@ angular.module('app.routes', [])
 
 $urlRouterProvider.otherwise('/login');
 
-
-
 });
+
+// .run(function ($rootScope, $state, loginSrvc, AUTH_EVENTS) {
+//   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+//     if (!loginSrvc.isAuthenticated()) {
+//       console.log(next.name);
+//       if (next.name !== 'login' && next.name !== 'register') {
+//         event.preventDefault();
+//         $state.go('login');
+//       }
+//     }
+//   });
+// });

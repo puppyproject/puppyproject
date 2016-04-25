@@ -44,16 +44,19 @@ angular.module('app.services', [])
       });
     };
 
-
-
     var login = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/authenticate', user).then(function(result) {
+          console.log(123123, result);
           if (result.data.success) {
+            var userInfo = result.data.user;
             storeUserCredentials(result.data.token);
-            resolve(result.data.msg);
+            console.log('token: ', result.data.token);
+            resolve(result.data.user);
+            console.log('Login success: ', result.data.token);
           } else {
-            reject(result.data.msg);
+            reject(result.data.user);
+            console.log('Login Failed: ', result.data.token);
           }
         });
       });
@@ -70,6 +73,30 @@ angular.module('app.services', [])
       register: register,
       logout: logout,
       isAuthenticated: function() {return isAuthenticated;},
+    };
+  })
+
+  .service('dogSrvc', function($http, $q) {
+    var addDog = function(user) {
+      var dfd = $q.defer();
+      $http({
+        method: 'PUT',
+        url: API_ENDPOINT.url + '/user/' + user._id + '/dogs',
+        data: {
+          name: user.dogs.name,
+          age: user.dogs.age,
+          gender: user.dogs.gender,
+          size: user.dogs.size,
+          breed: user.dogs.breed,
+          description: user.dogs.description,
+          fixed: user.dogs.fixed
+        }
+      }).then(function(res) {
+        dfd.resolve(res);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
     };
   })
 

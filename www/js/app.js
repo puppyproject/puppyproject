@@ -18,7 +18,7 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
 //THIS CAN MAKE IT GET ACCESS BY COMMENT IT OUT
 //If user is not authed go back to login
 .run(function ($rootScope, $state, loginSrvc, AUTH_EVENTS) {
-  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+  $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
     if (!loginSrvc.isAuthenticated()) {
       console.log(next.name);
       if (next.name !== 'login' && next.name !== 'register') {
@@ -28,6 +28,27 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
     }
   });
 })
+
+// .run(function ($rootScope, $state, loginSrvc, AUTH_EVENTS) {
+//   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+//
+//     if ('data' in next && 'authorizedRoles' in next.data) {
+//       var authorizedRoles = next.data.authorizedRoles;
+//       if (!loginSrvc.isAuthorized(authorizedRoles)) {
+//         event.preventDefault();
+//         $state.go($state.current, {}, {reload: true});
+//         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+//       }
+//     }
+//
+//     if (!loginSrvc.isAuthenticated()) {
+//       if (next.name !== 'login') {
+//         event.preventDefault();
+//         $state.go('login');
+//       }
+//     }
+//   });
+// })
 
 // All this does is allow the message
 // to be sent when you tap return
