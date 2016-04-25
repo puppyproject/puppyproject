@@ -20,14 +20,14 @@ var userSchema = new Schema({
             size:{type:String},
             breed:{type:String},
             description:{type:String},
-            fixed:{type:Boolean}
+            fixed:{type:Boolean},
+            image:{data: Buffer, contentType:String}
         }],
       connections:[{type:Schema.Types.ObjectId, ref:"User"}],
       rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
       possibles:[{type:Schema.Types.ObjectId, ref:"User"}],
       facebookId:String,
-      status:{type:String, enum:["active", "archived"]},
-      image:{data: Buffer, contentType:String}
+      status:{type:String, enum:["active", "archived"]}
   });
 
   userSchema.pre('save', function (next) {
