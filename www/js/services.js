@@ -93,7 +93,7 @@ angular.module('app.services', [])
       console.log('User:', user);
       $http({
         method: 'PUT',
-        url: API_ENDPOINT.url + '/user/' + user + '/adddog',
+        url: API_ENDPOINT.url + '/user/' + user + '/dogs',
         data: {
           name: dog.name,
           age: dog.age,
@@ -130,6 +130,22 @@ angular.module('app.services', [])
       }).then(function(res) {
         dfd.resolve(res);
         console.log('Dog: ', dog);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
+    };
+  })
+
+  .service('homeSrvc', function($q, $http, API_ENDPOINT) {
+    this.getUsers = function(user, dog) {
+      var dfd = $q.defer();
+      console.log('User:', user);
+      $http({
+        method: 'GET',
+        url: API_ENDPOINT.url + '/user/',
+      }).then(function(res) {
+        dfd.resolve(res);
       }).catch(function(err) {
         dfd.reject(err);
       });
