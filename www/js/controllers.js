@@ -85,6 +85,25 @@ angular.module('app.controllers', [])
         });
     });
   };
+
+  $scope.toggleTimer = function() {
+    // console.log($scope.mode);
+    if ($scope.mode === 'Clock in') {
+      if($scope.location !== undefined){
+        console.log($scope.location);
+        var today = new Date();
+        timeStart = today.getTime();
+        startTimer();
+        $scope.mode = "Clock out";
+        $scope.clockedIn = true;
+      }
+    } else {
+      stopTimer();
+      $scope.mode = "Clock in";
+      $scope.clockedIn = false;
+    }
+
+  };
 })
 
 
@@ -117,7 +136,17 @@ angular.module('app.controllers', [])
   });
 })
 
-.controller('homeCtrl', function($scope, $ionicPopover) {
+.controller('homeCtrl', function($scope, $ionicPopover, homeSrvc) {
+  $scope.getUsers = function( user ) {
+      homeSrvc.getUsers().then(function(res) {
+        $scope.users = res.data; // .data is an array and projects will be the project in projects
+        console.log("Users (Home): ", $scope.users);
+      });
+
+  	};
+    
+    $scope.getUsers();
+
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
     scope: $scope,
   }).then(function(popover) {
