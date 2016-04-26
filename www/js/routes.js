@@ -29,18 +29,7 @@ angular.module('app.routes', [])
         templateUrl: 'templates/user.html',
         controller: 'userCtrl'
       }
-    },
-    resolve: {
-				user: function(loginSrvc) {
-					return authService.getAuthedUser();
-				},
-				apptRef: function(mainService, user) {
-					return mainService.getMyMenteeBookedApts(user._id);
-				},
-				allMyAptRef: function(mainService, user) {
-					return mainService.getMyBookedApts(user._id);
-				}
-			}
+    }
   })
 
   .state('tabsController.home', {
