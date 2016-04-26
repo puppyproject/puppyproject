@@ -1,4 +1,4 @@
-  var   express = require('express'),
+var   express = require('express'),
        app = express(),
        bodyParser = require('body-parser'),
        cors = require('cors'),
@@ -47,6 +47,7 @@
     .put(appRoutes.postRejections);
 
 
+
     //***********AUTHORIZATION************\\
   require('./serverResources/config/passport')(passport);
 
@@ -65,7 +66,7 @@
      if (err) {
        return res.json({success: false, msg: 'Email already exists.'});
      }
-     res.json({success: true, msg: 'Successful created new user.'});
+     return res.json({success: true, msg: 'Successful created new user.'});
    });
  }
   });

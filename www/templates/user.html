@@ -19,10 +19,8 @@
                 <span class="input-label">Age</span>
                 <input type="text" placeholder="" ng-model="addMyDog.age">
             </label>
-            <label class="item item-input">
+            <label class="item item-select">
                 <span class="input-label">Size</span>
-                <input type="text" placeholder="" ng-model="addMyDog.size">
-<!--
                 <select ng-model="addMyDog.size">
                     <option>Small</option>
                     <option>Medium</option>
@@ -33,15 +31,11 @@
                 <span class="input-label">Breed</span>
                 <input type="text" placeholder="" ng-model="addMyDog.breed">
             </label>
+            <!-- <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle> -->
             <label class="item item-input">
-            <span class="input-label">Neutered</span>
-            <input type="text" placeholder="" ng-model="addMyDog.fixed">
-          </label>
-            <!-- <ion-toggle toggle-class="toggle-balanced" ng-checked="true">Neutered</ion-toggle> -->
-            <label class="item item-input">
-                <span class="input-label">Description</span><input placeholder="Description"> </input>
+                <!-- <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea> -->
             </label>
-            <button id="submitButton" type="submit" class="button button-block"><i class="icon ion-paper-airplane"></i>  Submit</button>
+            <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
 
         </form>
     </ion-content>
