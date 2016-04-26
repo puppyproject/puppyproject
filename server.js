@@ -40,11 +40,11 @@ var   express = require('express'),
     .put(appRoutes.editDogs);
 
   router.route('/user/:User_id/connections')
-    .put(appRoutes.postPossibles)
+    .put(appRoutes.postPossibles) //this is the route we are hitting in the front end with connections
     .get(appRoutes.getConnections);
 
   router.route('/user/:User_id/rejections')
-    .put(appRoutes.postRejections);
+    .put(appRoutes.postRejections); //this is put
 
 
 

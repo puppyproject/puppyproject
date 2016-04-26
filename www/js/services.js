@@ -119,14 +119,16 @@ angular.module('app.services', [])
       console.log('User:', user);
       $http({
         method: 'PUT',
-        url: API_ENDPOINT.url + '/user/' + user + '/adddog',
+        url: API_ENDPOINT.url + '/user/' + user + '/dogs',
         data: {
           name: dog.name,
           age: dog.age,
           gender: 'It',
           size: dog.size,
+          gender: dog.gender,
           breed: dog.breed,
           description: 'poopy dog',
+          photo: dog.image,
           fixed: false
         }
       }).then(function(res) {

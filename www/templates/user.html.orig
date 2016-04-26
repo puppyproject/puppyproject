@@ -11,10 +11,6 @@
           <button id="take-picture-button" ng-click="takePicture()" class="button button-block"><i class="icon ion-camera"></i>  Take Picture</button>
         </div>
         <form class="list" ng-submit="addDog(addMyDog)">
-          <label class="item item-input">
-              <span class="input-label">Photo Url</span>
-              <input type="text" placeholder="" ng-model="addMyDog.photo">
-          </label>
             <label class="item item-input">
                 <span class="input-label">Dog Name</span>
                 <input type="text" placeholder="" ng-model="addMyDog.name">
@@ -23,30 +19,40 @@
                 <span class="input-label">Age</span>
                 <input type="text" placeholder="" ng-model="addMyDog.age">
             </label>
-            <label class="item item-select">
+            <label class="item item-input">
                 <span class="input-label">Size</span>
+<<<<<<< HEAD
+                <input type="text" placeholder="" ng-model="addMyDog.size">
+<!--
+=======
+>>>>>>> a4980af4aa73e7c3c7bc01f8c44cad176447174f
                 <select ng-model="addMyDog.size">
                     <option>Small</option>
                     <option>Medium</option>
                     <option>Large</option>
-                </select>
-            </label>
-            <label class="item item-select">
-                <span class="input-label">Gender</span>
-                <select ng-model="addMyDog.gender">
-                    <option>Female</option>
-                    <option>Male</option>
-                </select>
+                </select> -->
             </label>
             <label class="item item-input">
                 <span class="input-label">Breed</span>
                 <input type="text" placeholder="" ng-model="addMyDog.breed">
             </label>
+<<<<<<< HEAD
+            <label class="item item-input">
+            <span class="input-label">Neutered</span>
+            <input type="text" placeholder="" ng-model="addMyDog.fixed">
+          </label>
+            <!-- <ion-toggle toggle-class="toggle-balanced" ng-checked="true">Neutered</ion-toggle> -->
+            <label class="item item-input">
+                <span class="input-label">Description</span><input placeholder="Description"> </input>
+            </label>
+            <button id="submitButton" type="submit" class="button button-block"><i class="icon ion-paper-airplane"></i>  Submit</button>
+=======
             <!-- <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle> -->
             <label class="item item-input">
                 <!-- <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea> -->
             </label>
             <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
+>>>>>>> a4980af4aa73e7c3c7bc01f8c44cad176447174f
 
         </form>
     </ion-content>
