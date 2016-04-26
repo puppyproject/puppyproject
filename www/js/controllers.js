@@ -72,7 +72,7 @@ angular.module('app.controllers', [])
       console.log('User(id): ', loginSrvc.user._id);
     dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res){
         var alertPopup = $ionicPopup.alert({
-          title: 'Welcome to Woofpals ',
+          title: 'Woof!',
           template: res.data
         });
         // $scope.addMyDog = res.data.user.dogs;
@@ -80,7 +80,7 @@ angular.module('app.controllers', [])
         console.log('res' , res);
       }, function(errMsg) {
         var alertPopup = $ionicPopup.alert({
-          title: 'Register failed!',
+          title: 'Bark! Please try again.',
           template: errMsg
         });
     });
