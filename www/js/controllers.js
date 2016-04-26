@@ -42,7 +42,7 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('userCtrl', function($scope, $cordovaCamera, $http, dogSrvc) {
+.controller('userCtrl', function($scope, $cordovaCamera, $http, dogSrvc, loginSrvc, $ionicPopup) {
   $scope.pictureUrl = 'http://placehold.it/300x300';
 
   $scope.takePicture = function() {
@@ -60,14 +60,24 @@ angular.module('app.controllers', [])
     });
   };
 
-  $scope.addMyDog = {};
-  console.log('addMyDog: ', $scope.addMyDog);
   $scope.addDog = function() {
-   dogSrvc.addDog($scope.addMyDog, $scope.user._id).then(function(res){
-     console.log(res);
-       $ionicPopup.alert({title: 'Welcome to Woofpals ' + user.dogs.name,template: msg});
-     });
- };
+        console.log('addMyDog: ', $scope.addMyDog);
+        console.log('User(id): ', loginSrvc.user._id);
+      dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res){
+          var alertPopup = $ionicPopup.alert({
+            title: 'Welcome to Woofpals ',
+            template: res.data
+          });
+          // $scope.addMyDog = res.data.user.dogs;
+          console.log($scope.addMyDog);
+          console.log('res' , res);
+        }, function(errMsg) {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Register failed!',
+            template: errMsg
+          });
+      });
+    };
 })
 
 
