@@ -141,10 +141,11 @@ angular.module('app.controllers', [])
       homeSrvc.getUsers().then(function(res) {
         $scope.users = res.data; // .data is an array and projects will be the project in projects
         console.log("Users (Home): ", $scope.users);
+        console.log("Dogname: ", $scope.users[3].dogs[0].name);
       });
 
   	};
-    
+
     $scope.getUsers();
 
   $ionicPopover.fromTemplateUrl('templates/popover.html', {

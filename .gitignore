@@ -3,3 +3,5 @@ secrets
 *.env
 platforms/
 plugins/
+config/
+database.js

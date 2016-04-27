@@ -97,11 +97,11 @@ angular.module('app.services', [])
         data: {
           name: dog.name,
           age: dog.age,
-          gender: 'It',
+          gender: dog.gender,
           size: dog.size,
           breed: dog.breed,
-          description: 'poopy dog',
-          fixed: false
+          description: dog.description,
+          fixed: dog.fixed
         }
       }).then(function(res) {
         dfd.resolve(res);
@@ -121,11 +121,11 @@ angular.module('app.services', [])
         data: {
           name: dog.name,
           age: dog.age,
-          gender: 'It',
+          gender: dog.age,
           size: dog.size,
           breed: dog.breed,
-          description: 'poopy dog',
-          fixed: false
+          description: dob.description,
+          fixed: dog.fixed
         }
       }).then(function(res) {
         dfd.resolve(res);
