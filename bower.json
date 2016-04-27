@@ -1,7 +1,14 @@
 {
-  "name": "HelloIonic",
-  "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4"
+  "name": "woofpals",
+  "description": "Puppyproject is an app designed to locate pups in your area and setup play dates.",
+  "main": "server.js",
+  "authors": [
+    "McKmillions <zachmckimmins@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/puppyproject/puppyproject",
+  "private": true,
+  "dependencies": {
+    "ionic-tinder-cards-2": "^1.0.4"
   }
 }
