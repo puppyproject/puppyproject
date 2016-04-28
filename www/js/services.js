@@ -137,10 +137,25 @@ angular.module('app.services', [])
     };
   })
 
+  // .service('homeSrvc', function($q, $http, API_ENDPOINT) {
+  //   this.getUsers = function(user, dog) {
+  //     var dfd = $q.defer();
+  //     console.log('User:', user);
+  //     $http({
+  //       method: 'GET',
+  //       url: API_ENDPOINT.url + '/user/',
+  //     }).then(function(res) {
+  //       dfd.resolve(res);
+  //     }).catch(function(err) {
+  //       dfd.reject(err);
+  //     });
+  //     return dfd.promise;
+  //   };
+  // })
+
   .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-    this.getUsers = function(user, dog) {
+    this.getCards = function() {
       var dfd = $q.defer();
-      console.log('User:', user);
       $http({
         method: 'GET',
         url: API_ENDPOINT.url + '/user/',

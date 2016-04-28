@@ -4,4 +4,6 @@ secrets
 platforms/
 plugins/
 config/
-database.js
+lib/
+"**/.*",
+"serverResources/config/database.js"

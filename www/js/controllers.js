@@ -136,24 +136,77 @@ angular.module('app.controllers', [])
   });
 })
 
-.controller('homeCtrl', function($scope, $ionicPopover, homeSrvc) {
-  $scope.getUsers = function( user ) {
-      homeSrvc.getUsers().then(function(res) {
-        $scope.users = res.data; // .data is an array and projects will be the project in projects
-        console.log("Users (Home): ", $scope.users);
-        console.log("Dogname: ", $scope.users[3].dogs[0].name);
-      });
+// .controller('homeCtrl', function($scope, $ionicPopover, homeSrvc) {
+//   $scope.getUsers = function( user ) {
+//       homeSrvc.getUsers().then(function(res) {
+//         $scope.users = res.data; // .data is an array and projects will be the project in projects
+//         console.log("Users (Home): ", $scope.users);
+//         console.log("Dogname: ", $scope.users[3].dogs[0].name);
+//       });
+//
+//   	};
+//
+//     $scope.getUsers();
+//
+//   $ionicPopover.fromTemplateUrl('templates/popover.html', {
+//     scope: $scope,
+//   }).then(function(popover) {
+//     $scope.popover = popover;
+//   });
+// })
 
-  	};
 
-    $scope.getUsers();
+.controller('homeCtrl', function($scope, $http, homeSrvc, $ionicPopover, $ionicLoading, $ionicSideMenuDelegate, TDCardDelegate) {
 
-  $ionicPopover.fromTemplateUrl('templates/popover.html', {
-    scope: $scope,
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
+  $ionicSideMenuDelegate.canDragContent(false);
+
+  var cardTypes = [];
+
+  // $ionicLoading.show();
+
+  $scope.getCards = function(card) {
+    homeSrvc.getCards().then(function(res) {
+      $scope.cards = res.data;
+      console.log("$scope.cards: ", $scope.cards);
+      console.log("Dogname: ", $scope.cards[3].dogs[0].name);
+    });
+  };
+  $scope.getCards();
+
+  // $scope.cards = cardTypes;
+
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  };
+
+  $scope.yesCard = function() {
+    console.log('YES');
+    $scope.addCard();
+  };
+
+  $scope.noCard = function() {
+    console.log('NO');
+    $scope.addCard();
+  };
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.cardSwipedLeft = function(index) {
+    console.log('LEFT SWIPE');
+    $scope.addCard();
+  };
+  $scope.cardSwipedRight = function(index) {
+    console.log('RIGHT SWIPE');
+    $scope.addCard();
+  };
 })
+
 
 .controller('sniffsCtrl', function($scope) {
 
