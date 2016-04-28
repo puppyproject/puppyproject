@@ -3,7 +3,6 @@ secrets
 *.env
 platforms/
 plugins/
-config/
 lib/
-"**/.*",
-"serverResources/config/database.js"
+"**/.*"
+database.js
