@@ -5,4 +5,4 @@ platforms/
 plugins/
 lib/
 "**/.*"
-"serverResources/config/database.js"
+database.js
