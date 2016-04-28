@@ -78,7 +78,7 @@ exports.statusChange = function(req, res){
 
 //Need to make a route that posts to the possibles, connections and rejections reference arrays
 
-exports.postPossibles = function (req, res){ //PUT POSSIBLES
+exports.postPossibles = function (req, res){
   User.findById(req.params.User_id).then(function(user){
     if(!user){
       console.log(111,"gettingError");
@@ -141,7 +141,7 @@ exports.getConnections = function(req, res){
   });
 };
 
-exports.postRejections = function(req, res){ // PUT!!! PUTREJECTIONS
+exports.postRejections = function(req, res){
   User.findById(req.params.User_id, function(err, user){
       if(!user){
         return res.status(404).end();

@@ -165,10 +165,11 @@ angular.module('app.services', [])
     };
   })
 
+
   .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-    this.getUsers = function(user, dog) {
+    this.getCards = function(card) {
       var dfd = $q.defer();
-      console.log('User:', user);
+      console.log('Card:', card);
       $http({
         method: 'GET',
         url: API_ENDPOINT.url + '/user/',

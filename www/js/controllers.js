@@ -86,24 +86,6 @@ angular.module('app.controllers', [])
     });
   };
 
-  $scope.toggleTimer = function() {
-    // console.log($scope.mode);
-    if ($scope.mode === 'Clock in') {
-      if($scope.location !== undefined){
-        console.log($scope.location);
-        var today = new Date();
-        timeStart = today.getTime();
-        startTimer();
-        $scope.mode = "Clock out";
-        $scope.clockedIn = true;
-      }
-    } else {
-      stopTimer();
-      $scope.mode = "Clock in";
-      $scope.clockedIn = false;
-    }
-
-  };
 })
 
 
@@ -136,22 +118,71 @@ angular.module('app.controllers', [])
   });
 })
 
-.controller('homeCtrl', function($scope, $ionicPopover, homeSrvc) {
-  $scope.getUsers = function( user ) {
-      homeSrvc.getUsers().then(function(res) {
-        $scope.users = res.data; // .data is an array and projects will be the project in projects
-        console.log("Users (Home): ", $scope.users);
-      });
+.controller('homeCtrl', function($scope, $http, homeSrvc, $ionicLoading) {
 
-  	};
-    
-    $scope.getUsers();
+        // $ionicSideMenuDelegate.canDragContent(false);
 
-  $ionicPopover.fromTemplateUrl('templates/popover.html', {
-    scope: $scope,
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
+        var cardTypes = [];
+        var liked = [];
+        var disliked = [];
+        // var cardTypes;
+        $scope.showCards = true;
+
+        $scope.getCards = function() {
+          homeSrvc.getCards().then(function(res) {
+            // $scope.cards = res.data;
+            console.log(res.data);
+            var card = res.data;
+            // angular.forEach(card, function(cards, dogs){
+            //   cardTypes.push(cards);
+            // })
+            for(var i = 0; i < res.data.length; i++){
+              cardTypes.push(res.data[i]);
+            }
+            // $scope.cardTypes = res.data;
+            // console.log(res.data);
+            console.log('cardTypes: ', cardTypes);
+            // console.log("$scope.cards: ", $scope.cards);
+            // console.log("Dogname: ", $scope.cards[3].dogs[0].name);
+          });
+        };
+        $scope.getCards();
+        $scope.cards = cardTypes; //this is the card in cards
+
+        	$scope.cardsControl = {};
+
+          $scope.reload = function() {
+          	$scope.cards = Array.prototype.slice.call(cardTypes, 0);
+          }
+
+          $scope.cardDestroyed = function(index) {
+            $scope.cards.splice(index, 1);
+          };
+
+          $scope.addCard = function() {
+            var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+            newCard.id = Math.random();
+            $scope.cards.push(angular.extend({}, newCard));
+          };
+
+          $scope.yesClick = function() {
+            $scope.cardsControl.swipeRight();
+          };
+
+          $scope.noClick = function() {
+            $scope.cardsControl.swipeLeft();
+          };
+
+          $scope.cardSwipedLeft = function(index) {
+            console.log('LEFT SWIPE');
+            //$scope.addCard();
+          };
+
+          $scope.cardSwipedRight = function(index) {
+            console.log('RIGHT SWIPE');
+            //$scope.addCard();
+          };
+
 })
 
 .controller('sniffsCtrl', function($scope) {
