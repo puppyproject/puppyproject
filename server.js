@@ -4,13 +4,14 @@ var   express = require('express'),
        cors = require('cors'),
        mongoose = require('mongoose'),
        port = 8873,
-       mongoUri = 'mongodb://localhost:27017/pawpals',
+      //  mongoUri = 'mongodb://localhost:27017/pawpals',
        router = express.Router(),
        appRoutes = require('./serverResources/routes/appRoutes.js'),
        User = require('./serverResources/schemas/User.js'),
        passport = require('passport'),
        jwt = require('jwt-simple'),
        config = require("./serverResources/config/database.js"),
+       mongoUri = config.database,
        morgan = require('morgan'),
       //  session = require('express-session'),
       //  FacebookStrategy = require('passport-facebook'),
@@ -37,7 +38,7 @@ var   express = require('express'),
     .delete(appRoutes.statusChange);
 
   router.route('/user/:User_id/dogs')
-    .put(appRoutes.editDogs);
+    .put(appRoutes.addDog);
 
   router.route('/user/:User_id/connections')
     .put(appRoutes.postPossibles)
@@ -45,6 +46,9 @@ var   express = require('express'),
 
   router.route('/user/:User_id/rejections')
     .put(appRoutes.postRejections);
+
+    router.route('/user/:User_id/editDog')
+    .put(appRoutes.editDog);
 
 
 

@@ -13,16 +13,16 @@ var userSchema = new Schema({
         required: true
     },
        humanName:{type:String},
-       dogs:[{
-            name:{type:String},
-            age:{type:Number},
-            gender:{type:String},
-            size:{type:String},
-            breed:{type:String},
-            description:{type:String},
-            fixed:{type:Boolean},
+       dogs:{
+            name:{type:String, default: 'dogName'},
+            age:{type:Number, default: 1},
+            gender:{type:String, default: 'gender'},
+            size:{type:String, default: 'size'},
+            breed:{type:String, default: 'breed'},
+            description:{type:String, default: 'description'},
+            fixed:{type:Boolean, default: false},
             image:{data: Buffer, contentType:String}
-        }],
+        },
       connections:[{type:Schema.Types.ObjectId, ref:"User"}],
       rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
       possibles:[{type:Schema.Types.ObjectId, ref:"User"}],

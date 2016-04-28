@@ -52,13 +52,19 @@ exports.editUser = function(req, res){
 }
 )};
 
-exports.editDogs = function(req, res){
+exports.addDog = function(req, res){
   User.findById(req.params.User_id).then(function(user){
     if(!user){
       return res.status(404).end();
     }
     console.log(3333, req.body);
-    user.dogs.push(req.body);
+    user.dogs.name = req.body.name;
+    user.dogs.age = req.body.age;
+    user.dogs.gender =req.body.gender;
+    user.dogs.size = req.body.size;
+    user.dogs.breed =req.body.breed;
+    user.dogs.description = req.body.description;
+    user.dogs.fixed = req.body.fixed;
     user.save();
     console.log(4444, user);
   });
@@ -153,5 +159,27 @@ exports.postRejections = function(req, res){
       console.log("Rejection Pushed");
       console.log(req.body._id);
       return res.status(200).end();
+  });
+};
+
+exports.editDog = function(req, res){
+  User.findById(req.params.User_id, function(err, user){
+    if(!user){
+      console.log("getting Error");
+      return res.status(404).end();
+    }
+    var updates = req.body;
+    var dog = user.dogs;
+    for (var k in updates){
+      dog[k] = updates[k];
+    }
+    user.save(function(err){
+      if(err){
+        console.log(333, err);
+        return res.send(err);
+      }
+      return res.json(user);
+    });
+
   });
 };
