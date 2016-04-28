@@ -1,0 +1,33 @@
+<ion-view title='<img class="title-image" src="./img/letter-logo.png"/>' id="page9" style="background-color:#F1F0F0;">
+    <ion-content padding="true" scroll="false" class="has-header">
+      <div class="spacer" style="width: 300px; height: 5px;"></div>
+      <div ng-if="showCards">
+      <td-cards control="cardsControl">
+          <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-transition-left="cardSwipedLeft($index)" on-transition-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+          <!-- <td-card ng-repeat="user in users.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"> -->
+                <!-- <div id="home-dogs-cards"> -->
+                <div class="image">
+                  <h3 style="text-align:center;">{{card.dogs[0].name}}</h3>
+                  <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
+                    <img src="https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xfa1/t31.0-8/10014449_10154105644040221_1827733139_o.jpg" class="">
+                    <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
+                    <div style="text-align:center; color: black">
+                        <span><strong>Age:</strong> {{card.dogs[0].age}}</span> |
+                        <span><strong>Gender:</strong> {{card.dogs[0].gender}}</span><br>
+                        <span><strong>Size:</strong></span><br>
+                        <p>{{card.dogs[0].size}}</p>
+                        <span><strong>Breed:</strong></span><br>
+                        <p>{{card.dogs[0].breed}}</p>
+                    </div>
+                  </div>
+              </td-card>
+      </td-cards>
+    </div>
+      <div class="spacer" style="width: 300px; height: 420px;"></div>
+
+        <div class="center">
+          <button id="x-button" class="button discard" ng-click="noClick()"><i class="icon-xbone"></i></button>
+          <button id="check-button" class="button" ng-click="yesClick()"><i class="icon-bonecheck"></i></button>
+        </div>
+    </ion-content>
+</ion-view>

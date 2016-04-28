@@ -1,0 +1,19 @@
+{
+  "name": "woofpals",
+  "description": "Puppyproject is an app designed to locate pups in your area and setup play dates.",
+  "main": "server.js",
+  "authors": [
+    "McKmillions <zachmckimmins@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/puppyproject/puppyproject",
+  "private": true,
+  "dependencies": {
+    "ionic-tinder-cards-2": "^1.0.4",
+    "cordova": "^3.4.0",
+    "ngCordova": "^0.1.26-alpha",
+    "angular-animate": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  }
+}
