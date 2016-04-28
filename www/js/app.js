@@ -1,4 +1,4 @@
-angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'ionic.contrib.ui.tinderCards2'])
+angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'ionic.contrib.ui.tinderCards'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -15,7 +15,7 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
   });
 })
 
-
+//THIS CAN MAKE IT GET ACCESS BY COMMENT IT OUT
 //If user is not authed go back to login
 .run(function ($rootScope, $state, loginSrvc, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {

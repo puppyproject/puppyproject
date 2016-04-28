@@ -101,6 +101,7 @@ angular.module('app.services', [])
           size: dog.size,
           breed: dog.breed,
           description: dog.description,
+          photo: dog.image,
           fixed: dog.fixed
         }
       }).then(function(res) {
@@ -137,25 +138,11 @@ angular.module('app.services', [])
     };
   })
 
-  // .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-  //   this.getUsers = function(user, dog) {
-  //     var dfd = $q.defer();
-  //     console.log('User:', user);
-  //     $http({
-  //       method: 'GET',
-  //       url: API_ENDPOINT.url + '/user/',
-  //     }).then(function(res) {
-  //       dfd.resolve(res);
-  //     }).catch(function(err) {
-  //       dfd.reject(err);
-  //     });
-  //     return dfd.promise;
-  //   };
-  // })
 
   .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-    this.getCards = function() {
+    this.getCards = function(card) {
       var dfd = $q.defer();
+      console.log('Card:', card);
       $http({
         method: 'GET',
         url: API_ENDPOINT.url + '/user/',
