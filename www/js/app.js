@@ -29,27 +29,6 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
   });
 })
 
-// .run(function ($rootScope, $state, loginSrvc, AUTH_EVENTS) {
-//   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
-//
-//     if ('data' in next && 'authorizedRoles' in next.data) {
-//       var authorizedRoles = next.data.authorizedRoles;
-//       if (!loginSrvc.isAuthorized(authorizedRoles)) {
-//         event.preventDefault();
-//         $state.go($state.current, {}, {reload: true});
-//         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-//       }
-//     }
-//
-//     if (!loginSrvc.isAuthenticated()) {
-//       if (next.name !== 'login') {
-//         event.preventDefault();
-//         $state.go('login');
-//       }
-//     }
-//   });
-// })
-
 // All this does is allow the message
 // to be sent when you tap return
 .directive('input', function($timeout) {
