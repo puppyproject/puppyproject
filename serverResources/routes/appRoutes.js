@@ -65,6 +65,7 @@ exports.addDog = function(req, res){
     user.dogs.breed =req.body.breed;
     user.dogs.description = req.body.description;
     user.dogs.fixed = req.body.fixed;
+    user.dogs.image = req.body.image;
     user.save();
     console.log(4444, user);
   });
