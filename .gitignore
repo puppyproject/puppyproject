@@ -6,3 +6,7 @@ plugins/
 lib/
 "**/.*"
 database.js
+hooks/
+resources/
+server/Resources/
+server.js
