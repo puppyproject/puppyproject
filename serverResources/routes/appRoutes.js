@@ -144,7 +144,7 @@ exports.getConnections = function(req, res){
       if(!user)
         return res.status(404).end();
 
-      return res.status(200).end();
+      return res.json(user);
   });
 };
 
