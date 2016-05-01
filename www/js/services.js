@@ -32,13 +32,31 @@ angular.module('app.services', [])
     window.localStorage.removeItem(LOCAL_TOKEN_KEY);
   }
 
+  // var register = function(user) {
+  //   return $q(function(resolve, reject) {
+  //     $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
+  //       if (result.data.success) {
+  //         resolve(result.data);
+  //       } else {
+  //         reject(result.data.msg);
+  //       }
+  //     });
+  //   });
+  // };
+
   var register = function(user) {
     return $q(function(resolve, reject) {
       $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
+        console.log('Result: ', result);
         if (result.data.success) {
-          resolve(result.data);
+          var userInfo = result.data.user;
+          storeUserCredentials(result.data.token);
+          console.log('token: ', result.data.token);
+          resolve(result.data.user);
+          console.log('Login success: ', result.data.token);
         } else {
-          reject(result.data.msg);
+          reject(result.data.user);
+          console.log('Login Failed: ', result.data.token);
         }
       });
     });
@@ -47,13 +65,13 @@ angular.module('app.services', [])
   var login = function(user) {
     return $q(function(resolve, reject) {
       $http.post(API_ENDPOINT.url + '/authenticate', user).then(function(result) {
-        console.log(123123, result);
+        console.log('Result: ', result);
         if (result.data.success) {
           var userInfo = result.data.user;
           storeUserCredentials(result.data.token);
-          console.log('token: ', result.data.token);
+          // console.log('token: ', result.data.token);
           resolve(result.data.user);
-          console.log('Login success: ', result.data.token);
+          // console.log('Login success: ', result.data.token);
         } else {
           reject(result.data.user);
           console.log('Login Failed: ', result.data.token);
@@ -145,9 +163,8 @@ angular.module('app.services', [])
 })
 
 .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-  this.getCards = function(card) {
+  this.getCards = function() {
     var dfd = $q.defer();
-    console.log('Card:', card);
     $http({
       method: 'GET',
       url: API_ENDPOINT.url + '/user/',
@@ -161,7 +178,7 @@ angular.module('app.services', [])
 
   this.postPossibles = function(user, possibleUser) {
     var dfd = $q.defer();
-    console.log('this is bad', possibleUser);
+    console.log('possibleUser: ', possibleUser);
     console.log(user);
     $http({
       method: 'PUT',
@@ -170,6 +187,41 @@ angular.module('app.services', [])
         _id: possibleUser
       }
     }).then(function(res) {
+      dfd.resolve(res);
+    }).catch(function(err) {
+      dfd.reject(err);
+    });
+    return dfd.promise;
+  };
+
+  this.postRejections = function(user, rejectedUser) {
+    var dfd = $q.defer();
+    console.log('this is bad', rejectedUser);
+    console.log(user);
+    $http({
+      method: 'PUT',
+      url: API_ENDPOINT.url + '/user/' + user + '/rejections',
+      data: {
+        _id: rejectedUser
+      }
+    }).then(function(res) {
+      dfd.resolve(res);
+    }).catch(function(err) {
+      dfd.reject(err);
+    });
+    return dfd.promise;
+  };
+})
+
+.service('sniffsSrvc', function($q, $http, API_ENDPOINT) {
+  this.getConnections = function(user) {
+    console.log('User sniff: ', user);
+    var dfd = $q.defer();
+    $http({
+      method: 'GET',
+      url: API_ENDPOINT.url + '/user/' + user + '/connections',
+    }).then(function(res) {
+      console.log('sniff res: ', res);
       dfd.resolve(res);
     }).catch(function(err) {
       dfd.reject(err);

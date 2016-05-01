@@ -134,10 +134,11 @@ exports.postPossibles = function (req, res){
 
 exports.getConnections = function(req, res){
   User.findById(req.params.User_id).populate("connections").then(function(user){
-      if(!user)
+      if(!user){
         return res.status(404).end();
-
-      return res.status(200).end();
+      }
+      res.json(user);
+      // return res.status(200).end();
   });
 };
 

@@ -166,10 +166,23 @@ angular.module('app.controllers', [])
             $scope.cardsControl.swipeLeft();
           };
 
+          rejectId = [];
+
           $scope.cardSwipedLeft = function(index) {
             console.log('LEFT SWIPE');
             // $scope.addCard();
+            rejectId.push(cardTypes[index]._id);
+            console.log('rejectId', rejectId);
 
+            if(rejectId.length >= 3){
+              for(var i = 0; i < rejectId.length; i++){
+                homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
+              }
+              rejectId = [];
+            }
+            // $scope.addCard();
+            console.log('CardType Index: ', cardTypes[index]);
+            console.log('rejectId', rejectId);
           };
 
           var storeId = [];
@@ -178,8 +191,6 @@ angular.module('app.controllers', [])
           $scope.cardSwipedRight = function(index) {
             console.log('index: ', index);
             console.log('RIGHT SWIPE');
-
-
             console.log('User(id): ', loginSrvc.user._id);
             console.log('Ids:', cardTypes[index]._id);
 
@@ -205,9 +216,14 @@ angular.module('app.controllers', [])
           $scope.reload();
 })
 
-
-.controller('sniffsCtrl', function($scope) {
-
+.controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc) {
+  var getConnections = function() {
+    sniffsSrvc.getConnections(loginSrvc.user._id).then(function(res) {
+      $scope.connections = res.data.connections;
+      console.log('sniffsCtrl: ', res.data.connections[0].dogs[0].name);
+    });
+  };
+  getConnections();
 })
 
 .controller('woofsCtrl', function($scope, $timeout, $ionicScrollDelegate) {
