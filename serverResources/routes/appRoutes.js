@@ -1,6 +1,9 @@
 var User = require('../schemas/User');
 //api/user Route
 
+
+
+
 exports.postUser = function(req, res){
   var user = new User();
   user.name = req.body.name;
@@ -93,13 +96,11 @@ exports.postPossibles = function (req, res){
 
     }
     User.findById(req.body._id, function( err, user2) {
-      console.log(44444, user2);
+      // console.log(44444, user2);
       if(!user2) {
-        console.log(6666);
+        // console.log(6666);
         return res.status(404).end();
       }
-      var arr = user.possibles;
-      var arr2 = user2.possibles;
 
       if(user2.possibles.length === 0) {
           console.log(555555);
@@ -108,11 +109,11 @@ exports.postPossibles = function (req, res){
         res.status(200).end();
       }
       else if(user2.possibles.length > 0){
-        console.log(93939, "yes");
+        // console.log(93939, "yes");
         for (var i = 0; i <= user2.possibles.length - 1; i++){
-         console.log(i, user2.possibles.length);
-         console.log(73837, user2.possibles[i]);
-         console.log(848484, user._id);
+        //  console.log(i, user2.possibles.length);
+        //  console.log(73837, user2.possibles[i]);
+        //  console.log(848484, user._id);
           if(user2.possibles.indexOf(user._id) > -1){
             // console.log('user is a possible connection');
             // console.log(1111, user, user2);
@@ -124,8 +125,10 @@ exports.postPossibles = function (req, res){
             user2.save();
             user.save();
             // console.log(3333, user, user2);
-            res.status(200).end();
-          }
+            console.log('getting passed the save');
+            return res.status(200).end();
+            // return res.status(200).end();
+        }
           else {
             user.possibles.push(user2);
             user.save();
@@ -139,10 +142,107 @@ exports.postPossibles = function (req, res){
   });
 };
 
+//********REFACTORING ATTEMPT USING MONGODB*********
+// exports.postPossibles = function (req, res){
+//   var User1, User2;
+//
+//   User.findById(req.params.User_id, function(err, queriedUser1) {
+//     if(err)
+//       return res.status(300).send(err);
+//     else {
+//       User1 = queriedUser1;
+//       User.findById(req.body._id, function(err, queriedUser2) {
+//         if(err)
+//           return res.status(300).send(err);
+//         else
+//           User2 = queriedUser2;
+//
+//             // if User2 has no possibles
+//             // add to possibles
+//             if(User2.possibles.length) {
+//               console.log("----THIS IS A NEW USER----");
+//               User.findByIdAndUpdate(
+//                 User1._id,
+//                 {$addToSet: {connections: User2._id}},
+//                 {safe: true, upsert: true, new: true},
+//                 function(err, updatedUser1) {
+//                   if(err)
+//                     return res.status(301).send(err);
+//                   else
+//                     return res.status(200).send(updatedUser1);
+//                 }
+//               );
+//             }
+//             else {
+//               //if in either possibles or connections
+//               if(User2.possibles.indexOf(User1._id) > -1 || User2.connections.indexOf(User1._id) > -1) {
+//
+//                 // if IN possibles but NOT connections
+//                 // remove from both Users possibles and
+//                 // add to connections
+//                 if(User2.possibles.indexOf(User1._id) > -1 || User2.connections.indexOf(User1._id) === -1) {
+//                   User.findByIdAndUpdate(
+//                     User1._id,
+//                     {
+//                       $addToSet: {connections: User2._id},
+//                       $pullAll: {possibles: User2._id}
+//                     },
+//                     {safe: true, upsert: true, new: true},
+//                     function(err, updatedUser1) {
+//                       if(err)
+//                         res.status(300).send(err);
+//                       else
+//                         res.status(200).send(updatedUser1);
+//                     }
+//                   );
+//                   User.findByIdAndUpdate(
+//                     User2._id,
+//                     {
+//                       $addToSet: {connections: User1._id},
+//                       $pullAll: {possibles: User1._id}
+//                     },
+//                     {safe: true, upsert: true, new: true},
+//                     function(err, updatedUser2) {
+//                       if(err)
+//                         res.status(300).send(err);
+//                       else
+//                         res.status(200).send(updatedUser2);
+//                     }
+//                   );
+//                 }
+//                 //if NOT in possibles but IS is connections
+//                 else {
+//                   res.status(200).send(JSON.stringify("Already in Connections"));
+//                 }
+//               }
+//               //if not in either possibles or connections
+//               //add to possibles
+//               else {
+//                 User.findByIdAndUpdate(
+//                   User2._id,
+//                   { $addToSet: {possibles: User1._id} },
+//                   {safe: true, upsert: true, new: true},
+//                   function(err, updatedUser2) {
+//                     if(err)
+//                       res.status(300).send(err);
+//                     else
+//                       res.status(200).send(updatedUser2);
+//                   }
+//                 );
+//               }
+//             }
+//           }
+//       );
+//     }
+//   });
+// };
+
 exports.getConnections = function(req, res){
   User.findById(req.params.User_id).populate("connections").then(function(user){
       if(!user)
         return res.status(404).end();
+
+
 
       return res.json(user);
   });
