@@ -9852,6 +9852,29 @@ messages {
   border-color: #C7C7CC transparent;
   width: 0; }
 
+.overlayBox {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  margin: 0 auto; }
+
+.boxed {
+  font-size: 30px; }
+
+.yesBox {
+  color: lime;
+  padding: 15px;
+  border-radius: 50%;
+  color: #82C1A7;
+  font-size: 3rem; }
+
+.no-text {
+  background-color: rgba(255, 0, 0, 0.2); }
+
+.noBox {
+  color: red; }
+
 #x-button {
   padding: 15px;
   margin-right: 40px;

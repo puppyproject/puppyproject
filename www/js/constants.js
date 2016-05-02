@@ -5,6 +5,7 @@ angular.module('woofPals')
 })
 
 .constant('API_ENDPOINT', {
-  url: 'http://127.0.0.1:8873/api'
+  url: 'http://localhost:8100/api'
+  // url: 'ancient-reef-80452.herokuapp.com/api'
   //  For a simulator use: url: 'http://127.0.0.1:8080/api'
 });

@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('loginCtrl', function($scope, loginSrvc,  $ionicPopup, $state) {
+.controller('loginCtrl', function($scope, loginSrvc, $ionicPopup, $state) {
   $scope.user = {
     email: '',
     password: ''
@@ -68,21 +68,21 @@ angular.module('app.controllers', [])
   $scope.addMyDog = {};
 
   $scope.addDog = function() {
-      console.log('addMyDog: ', $scope.addMyDog);
-      console.log('User(id): ', loginSrvc.user._id);
-    dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res){
-        var alertPopup = $ionicPopup.alert({
-          title: 'Woof!',
-          template: res.data
-        });
-        // $scope.addMyDog = res.data.user.dogs;
-        console.log($scope.addMyDog);
-        console.log('res' , res);
-      }, function(errMsg) {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Bark! Please try again.',
-          template: errMsg
-        });
+    console.log('addMyDog: ', $scope.addMyDog);
+    console.log('User(id): ', loginSrvc.user._id);
+    dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Woof!',
+        template: res.data
+      });
+      // $scope.addMyDog = res.data.user.dogs;
+      console.log($scope.addMyDog);
+      console.log('res', res);
+    }, function(errMsg) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Bark! Please try again.',
+        template: errMsg
+      });
     });
   };
 
@@ -120,109 +120,113 @@ angular.module('app.controllers', [])
 
 .controller('homeCtrl', function($scope, $http, homeSrvc, $ionicLoading, loginSrvc) {
 
-        $scope.showCards = true;
-        var cardTypes = [];
+  $scope.showCards = true;
+  var cardTypes = [];
 
-        $scope.getCards = function() {
-          homeSrvc.getCards().then(function(res) {
+  $scope.getCards = function() {
+    homeSrvc.getCards().then(function(res) {
 
-            console.log(res.data);
+      console.log("res.data(home)", res.data);
 
-            var card = res.data;
+      var card = res.data;
 
-            $scope.cards = res.data;
+      $scope.cards = res.data;
+      console.log("$scope.cards(home)", $scope.cards);
 
-            cardTypes = res.data.slice();
+      cardTypes = res.data.slice();
 
-          });
-        };
+    });
+  };
 
-        console.log('cardTypes', cardTypes);
+  console.log('cardTypes', cardTypes);
 
-        $scope.getCards();
-        // $scope.cards = cardTypes; //this is the card in cards
+  $scope.getCards();
+  // $scope.cards = cardTypes; //this is the card in cards
 
-        	$scope.cardsControl = {};
+  $scope.cardsControl = {};
 
-          $scope.reload = function() {
-          	$scope.cards = Array.prototype.slice.call(cardTypes, 0);
-          };
+  $scope.reload = function() {
+    $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+  };
 
-          $scope.cardDestroyed = function(index) {
-            $scope.cards.splice(index, 1);
-          };
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
 
-          $scope.addCard = function() {
-            var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-            newCard.id = Math.random();
-            $scope.cards.push(angular.extend({}, newCard));
-          };
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  };
 
-          $scope.yesClick = function() {
-            $scope.cardsControl.swipeRight();
-          };
+  $scope.yesClick = function() {
+    $scope.cardsControl.swipeRight();
+  };
 
-          $scope.noClick = function() {
-            $scope.cardsControl.swipeLeft();
-          };
+  $scope.noClick = function() {
+    $scope.cardsControl.swipeLeft();
+  };
 
-          rejectId = [];
+  rejectId = [];
 
-          $scope.cardSwipedLeft = function(index) {
-            console.log('LEFT SWIPE');
-            // $scope.addCard();
-            rejectId.push(cardTypes[index]._id);
-            console.log('rejectId', rejectId);
+  $scope.cardSwipedLeft = function(index) {
+    console.log('LEFT SWIPE');
+    // $scope.addCard();
+    // rejectId.push(cardTypes[index]._id);
+    console.log('rejectId', rejectId);
 
-            if(rejectId.length >= 3){
-              for(var i = 0; i < rejectId.length; i++){
-                homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
-              }
-              rejectId = [];
-            }
-            // $scope.addCard();
-            console.log('CardType Index: ', cardTypes[index]);
-            console.log('rejectId', rejectId);
-          };
+    // if (rejectId.length >= 3) {
+    //   for (var i = 0; i < rejectId.length; i++) {
+    //     homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
+    //   }
+    //   rejectId = [];
+    // }
+    // $scope.addCard();
+    console.log('CardType Index: ', cardTypes[index]);
+    console.log('rejectId', rejectId);
+  };
 
-          var storeId = [];
+  var storeId = [];
 
 
-          $scope.cardSwipedRight = function(index) {
-            console.log('index: ', index);
-            console.log('RIGHT SWIPE');
-            console.log('User(id): ', loginSrvc.user._id);
-            console.log('Ids:', cardTypes[index]._id);
+  $scope.cardSwipedRight = function(index) {
+    console.log('index: ', index);
+    console.log('RIGHT SWIPE');
+    console.log('User(id): ', loginSrvc.user._id);
+    console.log('Ids:', cardTypes[index]._id);
 
-            storeId.push(cardTypes[index]._id);
-            console.log('storeID', storeId);
+    // storeId.push(cardTypes[index]._id);
+    console.log('storeID', storeId);
 
-            if(storeId.length >= 3){
-              for(var i = 0; i < storeId.length; i++){
-                homeSrvc.postPossibles(loginSrvc.user._id, storeId[i]);
-                // .then(function(res) {
-                //   console.log('postPossible_storeId: ', storeId[i]);
-                //   console.log('res: ', res);
-                // });
-              }
-              storeId = [];
-            }
+    // if (storeId.length >= 3) {
+    //   for (var i = 0; i < storeId.length; i++) {
+    //     homeSrvc.postPossibles(loginSrvc.user._id, storeId[i]);
+    //     // .then(function(res) {
+    //     //   console.log('postPossible_storeId: ', storeId[i]);
+    //     //   console.log('res: ', res);
+    //     // });
+    //   }
+    //   storeId = [];
+    // }
 
-            // $scope.addCard();
-            console.log('CardType Index: ', cardTypes[index]);
-            console.log('storeId', storeId);
-          };
+    // $scope.addCard();
+    console.log('CardType Index: ', cardTypes[index]);
+    console.log('storeId', storeId);
+  };
 
-          $scope.reload();
+  $scope.reload();
 })
 
 .controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc) {
   var getConnections = function() {
     sniffsSrvc.getConnections(loginSrvc.user._id).then(function(res) {
       $scope.connections = res.data.connections;
+
       console.log('sniffsCtrl: ', res.data.connections[0].dogs[0].name);
     });
   };
+
+
   getConnections();
 })
 

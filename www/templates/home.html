@@ -1,14 +1,18 @@
-<ion-view title='Woofpals>' id="page9" style="background-color:#F1F0F0;">
+<ion-view title='<img class="title-image" src="./img/letter-logo.png"/>' id="page9" style="background-color:#F1F0F0;">
     <ion-content padding="true" scroll="true" class="has-header">
       <div class="spacer" style="width: 300px; height: 5px;"></div>
       <div ng-if="showCards">
-      <td-cards control="cardsControl">
-        <div  ng-repeat="card in cards">
-          <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-transition-left="cardSwipedLeft($index)" on-transition-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+
+      <td-cards control="cardsControl" ng-repeat="card in cards">
+        <!-- <div  ng-repeat="card in cards"> -->
+          <td-card id="td-card" on-destroy="cardDestroyed($index)" on-transition-left="cardSwipedLeft($index)" on-transition-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
           <!-- <td-card ng-repeat="user in users.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"> -->
                 <!-- <div id="home-dogs-cards"> -->
                 <div class="image">
+                  <div class="overlayBox"><div class="yesBox boxed"><i class="icon-bonecheck"></i></div></div>
+                    <div class="no-text overlayBox"><div class="noBox boxed"><i class="icon-xbone"></i></div></div>
                   <h3 style="text-align:center;">{{card.dogs[0].name}}</h3>
+
                   <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
                     <img ng-src="{{card.dogs[0].image}}" class="">
                     <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
@@ -21,18 +25,21 @@
                         <p>{{card.dogs[0].breed}}</p>
                     </div>
                   </div>
-              </td-card>
-            </div>
+                </td-card>
+
+            <!-- </div> -->
       </td-cards>
-    </div>
+
+      <!-- buttons -->
       <div class="spacer" style="width: 300px; height: 430px;"></div>
-        <div class="center">
-          <button id="x-button" class="button discard" ng-click="noClick()"><i class="icon-xbone"></i></button>
-          <button id="check-button" class="button" ng-click="yesClick()"><i class="icon-bonecheck"></i></button>
-        </div>
-        <div class="empty">
-         <button id="dog-cards-reload" ng-if="showCards" ng-click="reload()" class="button button-outline button-positive"><i class="ion-refresh"></i></button>
-       </div>
+      <div class="center">
+        <button id="x-button" class="button discard" ng-click="cardSwipedLeft($index)"><i class="icon-xbone"></i></button>
+        <button id="check-button" class="button" ng-click="cardSwipedRight($index)"><i class="icon-bonecheck"></i></button>
+      </div>
+      <div class="empty">
+        <button id="dog-cards-reload" ng-if="showCards" ng-click="reload()" class="button button-outline button-positive"><i class="ion-refresh"></i></button>
+      </div>
+    </div>
 
 
     </ion-content>
