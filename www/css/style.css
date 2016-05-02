@@ -18,11 +18,16 @@ padding:20px;
 
 }
 
+.mainHeader h1{
+  color:black;
+  margin-left: 50%;
+}
+
 .logo{
 
 width:40%;
 margin-top:50%;
-color:black;
+margin-left: 50%;
 
 }
 
@@ -30,6 +35,7 @@ color:black;
 
 width:40%;
 margin-top:8%;
+margin-left: 50%;
 
 }
 
@@ -42,7 +48,6 @@ opacity:0.8;
 .mainscreen{
 
 width:60%;
-margin-top: 40%;
 
 }
 
