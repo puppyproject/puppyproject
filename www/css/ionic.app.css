@@ -9881,16 +9881,19 @@ messages {
   color: white;
   font-size: 3rem; }
 
-#dog-info-button {
-  padding: 8px;
-  border-radius: 100%;
-  width: 50px;
-  height: 50px;
+#dog-cards-reload {
+  position: absolute;
+  padding: 15px;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
   background-color: #11c1f3;
   color: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  border: 4px solid white;
-  font-size: 1.3rem; }
+  border: 6px solid white;
+  font-size: 2.7rem;
+  left: 50%;
+  margin: 195px 0 40px -40px; }
 
 /* CORE */
 td-cards {
@@ -9924,57 +9927,37 @@ td-cards {
   align-items: center; }
 
 td-card {
-  /*position: absolute;*/
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-content: stretch;
-  -ms-flex-line-pack: stretch;
-  align-content: stretch;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
   position: absolute;
   left: 50%;
   margin: 0px 0 40px -150px;
-  width: 300px;
+  width: 315px;
   height: 400px;
-  border: 1px solid #999;
+  border: 1px solid #EBEBEB;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: white;
-  color: #fff;
-  padding: 0 20px; }
+  color: #fff; }
 
-td-card .image {
-  top: 20px;
+td-card .dogs-div {
   width: 100%; }
 
-td-card img {
-  margin-top: 2px;
-  height: 200px;
-  max-width: 100%;
-  border-radius: 10px;
-  max-height: 100%; }
+.image {
+  width: 315px;
+  height: 100px;
+  margin-bottom: 20px;
+  margin-bottom: 40px; }
+
+.image img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow: hidden; }
+
+.dogs-info {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 130px;
+  width: 315px;
+  height: 150px; }
 
 #submitButton {
   background-color: #82C1A7;
@@ -9983,6 +9966,22 @@ td-card img {
 #take-picture-button {
   background-color: #EAA93C;
   color: white; }
+
+.chat-item {
+  -webkit-animation: slideInBothWays ease-in 1;
+  animation: slideInBothWays ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 750ms;
+  animation-duration: 750ms; }
+
+@-webkit-keyframes slideInBothWays {
+  0% {
+    -webkit-transform: translate3d(-100%, 0, 0); }
+  50% {
+    -webkit-transform: translate3d(50%, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0); } }
 
 h3 {
   color: #464646; }

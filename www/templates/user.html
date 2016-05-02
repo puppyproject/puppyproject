@@ -12,8 +12,8 @@
         </div>
         <form class="list" ng-submit="addDog(addMyDog)">
           <label class="item item-input">
-              <span class="input-label">Photo Url</span>
-              <input type="text" placeholder="" ng-model="addMyDog.photo">
+              <span class="input-label">Image Url</span>
+              <input type="text" placeholder="" ng-model="addMyDog.image">
           </label>
             <label class="item item-input">
                 <span class="input-label">Dog Name</span>
@@ -44,7 +44,7 @@
             </label>
             <!-- <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle> -->
             <label class="item item-input">
-                <!-- <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea> -->
+                <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea>
             </label>
             <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
 

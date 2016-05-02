@@ -29,6 +29,24 @@ angular.module('woofPals', ['ionic', 'ngCordova', 'app.controllers', 'app.routes
   });
 })
 
+.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [],
+          keys = [];
+
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+
+      return output;
+   };
+})
+
+
 // All this does is allow the message
 // to be sent when you tap return
 .directive('input', function($timeout) {

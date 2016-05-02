@@ -51,7 +51,7 @@ angular.module('app.services', [])
           if (result.data.success) {
             var userInfo = result.data.user;
             storeUserCredentials(result.data.token);
-            console.log('token: ', result.data.token);
+            // console.log('token: ', result.data.token);
             resolve(result.data.user);
             console.log('Login success: ', result.data.token);
           } else {
@@ -84,13 +84,14 @@ angular.module('app.services', [])
         method: 'PUT',
         url: API_ENDPOINT.url + '/user/' + user + '/dogs',
         data: {
-          name: dog.name,
           age: dog.age,
-          gender: 'It',
+          name: dog.name,
+          gender: dog.gender,
           size: dog.size,
           breed: dog.breed,
-          description: 'poopy dog',
-          fixed: false
+          description: dog.description,
+          fixed: dog.fixed,
+          image: dog.image
         }
       }).then(function(res) {
         dfd.resolve(res);
@@ -127,7 +128,7 @@ angular.module('app.services', [])
           size: dog.size,
           gender: dog.gender,
           breed: dog.breed,
-          description: 'poopy dog',
+          description: dog.description,
           photo: dog.image,
           fixed: false
         }
@@ -165,15 +166,66 @@ angular.module('app.services', [])
     };
   })
 
-
   .service('homeSrvc', function($q, $http, API_ENDPOINT) {
-    this.getCards = function(card) {
+    this.getCards = function() {
       var dfd = $q.defer();
-      console.log('Card:', card);
       $http({
         method: 'GET',
         url: API_ENDPOINT.url + '/user/',
       }).then(function(res) {
+        dfd.resolve(res);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
+    };
+
+    this.postPossibles = function(user, possibleUser) {
+      var dfd = $q.defer();
+      console.log('possibleUser: ', possibleUser);
+      console.log(user);
+      $http({
+        method: 'PUT',
+        url: API_ENDPOINT.url + '/user/' + user + '/connections',
+        data: {
+          _id: possibleUser
+        }
+      }).then(function(res) {
+        dfd.resolve(res);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
+    };
+
+    this.postRejections = function(user, rejectedUser) {
+      var dfd = $q.defer();
+      console.log('this is bad', rejectedUser);
+      console.log(user);
+      $http({
+        method: 'PUT',
+        url: API_ENDPOINT.url + '/user/' + user + '/rejections',
+        data: {
+          _id: rejectedUser
+        }
+      }).then(function(res) {
+        dfd.resolve(res);
+      }).catch(function(err) {
+        dfd.reject(err);
+      });
+      return dfd.promise;
+    };
+  })
+
+  .service('sniffsSrvc', function($q, $http, API_ENDPOINT) {
+    this.getConnections = function(user) {
+      console.log('User sniff: ', user);
+      var dfd = $q.defer();
+      $http({
+        method: 'GET',
+        url: API_ENDPOINT.url + '/user/' + user + '/connections',
+      }).then(function(res) {
+        console.log('sniff res: ', res);
         dfd.resolve(res);
       }).catch(function(err) {
         dfd.reject(err);

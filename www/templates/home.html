@@ -1,30 +1,39 @@
 <ion-view title='<img class="title-image" src="./img/letter-logo.png"/>' id="page9" style="background-color:#F1F0F0;">
     <ion-content padding="true" scroll="false" class="has-header">
       <div class="spacer" style="width: 300px; height: 5px;"></div>
-      <div ng-if="showCards">
-      <td-cards control="cardsControl">
-          <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-transition-left="cardSwipedLeft($index)" on-transition-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+      <div>
+        <div class="empty" style="text-align: center;">
+         <button id="dog-cards-reload" ng-if="showCards" ng-click="reload()" class="button button-outline button-positive"><i class="ion-refresh"></i></button>
+       </div>
+      <td-cards ng-repeat="card in cards track by $index" control="cardsControl">
+        <!-- <div> -->
+          <td-card id="td-card" on-destroy="cardDestroyed($index)" on-transition-left="cardSwipedLeft($index)" on-transition-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)">
           <!-- <td-card ng-repeat="user in users.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"> -->
                 <!-- <div id="home-dogs-cards"> -->
-                <div class="image">
-                  <h3 style="text-align:center;">{{card.dogs[0].name}}</h3>
+                <!-- <div class="dogs-div"> -->
                   <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
-                    <img src="https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xfa1/t31.0-8/10014449_10154105644040221_1827733139_o.jpg" class="">
-                    <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
-                    <div style="text-align:center; color: black">
-                        <span><strong>Age:</strong> {{card.dogs[0].age}}</span> |
-                        <span><strong>Gender:</strong> {{card.dogs[0].gender}}</span><br>
-                        <span><strong>Size:</strong></span><br>
-                        <p>{{card.dogs[0].size}}</p>
-                        <span><strong>Breed:</strong></span><br>
-                        <p>{{card.dogs[0].breed}}</p>
-                    </div>
+                  <div class="image">
+                    <img ng-src="{{card.dogs[0].image}}" id="avatar" class="full-image">
                   </div>
+                    <!-- <div class="spacer" style="width: 300px; height: 5px;"></div> -->
+                    <div style="text-align:left; color: black" class="dogs-info">
+                        <h3 style="">{{card.dogs[0].name}}, {{card.dogs[0].age}} &middot; {{card.dogs[0].gender}}</h3><hr>
+                        <span>{{card.dogs[0].description}}</span>
+                        <br>
+                        <br>
+                        <span style="text-align:left; color: #464646"><strong>Size:</strong></span>
+                        <span>{{card.dogs[0].size}}</span><br>
+                        <span style="text-align:left; color: #464646"><strong>Breed:</strong></span>
+                        <span>{{card.dogs[0].breed}}</span>
+                        <!-- <span><strong>fixed:</strong></span>
+                        <span>{{card.dogs[0].fixed}}</span> -->
+                    </div>
+                  <!-- </div> -->
               </td-card>
+            <!-- </div> -->
       </td-cards>
     </div>
-      <div class="spacer" style="width: 300px; height: 420px;"></div>
-
+      <div class="spacer" style="width: 300px; height: 430px;"></div>
         <div class="center">
           <button id="x-button" class="button discard" ng-click="noClick()"><i class="icon-xbone"></i></button>
           <button id="check-button" class="button" ng-click="yesClick()"><i class="icon-bonecheck"></i></button>

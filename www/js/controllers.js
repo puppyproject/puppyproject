@@ -69,7 +69,7 @@ angular.module('app.controllers', [])
 
   $scope.addDog = function() {
       console.log('addMyDog: ', $scope.addMyDog);
-      console.log('User(id): ', loginSrvc.user._id);
+      // console.log('User(id): ', loginSrvc.user._id);
     dogSrvc.addDog(loginSrvc.user._id, $scope.addMyDog).then(function(res){
         var alertPopup = $ionicPopup.alert({
           title: 'Woof!',
@@ -118,13 +118,13 @@ angular.module('app.controllers', [])
   });
 })
 
-.controller('homeCtrl', function($scope, $http, homeSrvc, $ionicLoading) {
+.controller('homeCtrl', function($scope, $http, homeSrvc, $ionicLoading, $rootScope, TDCardDelegate, loginSrvc) {
 
         // $ionicSideMenuDelegate.canDragContent(false);
 
         var cardTypes = [];
-        var liked = [];
-        var disliked = [];
+        // var liked = [];
+        // var disliked = [];
         // var cardTypes;
         $scope.showCards = true;
 
@@ -132,13 +132,15 @@ angular.module('app.controllers', [])
           homeSrvc.getCards().then(function(res) {
             // $scope.cards = res.data;
             console.log(res.data);
-            var card = res.data;
+            // var card = res.data;
+            $scope.cards = res.data;
             // angular.forEach(card, function(cards, dogs){
             //   cardTypes.push(cards);
             // })
-            for(var i = 0; i < res.data.length; i++){
-              cardTypes.push(res.data[i]);
-            }
+            // for(var i = 0; i < res.data.length; i++){
+            //   cardTypes.push(res.data[i]);
+            // }
+            cardTypes = res.data.slice()
             // $scope.cardTypes = res.data;
             // console.log(res.data);
             console.log('cardTypes: ', cardTypes);
@@ -147,13 +149,13 @@ angular.module('app.controllers', [])
           });
         };
         $scope.getCards();
-        $scope.cards = cardTypes; //this is the card in cards
+        // $scope.cards = cardTypes; //this is the card in cards
 
         	$scope.cardsControl = {};
 
           $scope.reload = function() {
           	$scope.cards = Array.prototype.slice.call(cardTypes, 0);
-          }
+          };
 
           $scope.cardDestroyed = function(index) {
             $scope.cards.splice(index, 1);
@@ -173,20 +175,63 @@ angular.module('app.controllers', [])
             $scope.cardsControl.swipeLeft();
           };
 
+          rejectId = [];
+
           $scope.cardSwipedLeft = function(index) {
             console.log('LEFT SWIPE');
-            //$scope.addCard();
+            // $scope.addCard();
+            rejectId.push(cardTypes[index]._id);
+            console.log('rejectId', rejectId);
+
+            if (rejectId.length >= 3) {
+              for (var i = 0; i < rejectId.length; i++) {
+                homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
+              }
+              rejectId = [];
+            }
+            // $scope.addCard();
+            console.log('CardType Index: ', cardTypes[index]);
+            console.log('rejectId', rejectId);
           };
 
+          var storeId = [];
+
+
           $scope.cardSwipedRight = function(index) {
+            console.log('index: ', index);
             console.log('RIGHT SWIPE');
-            //$scope.addCard();
+            console.log('User(id): ', loginSrvc.user._id);
+            console.log('Ids:', cardTypes[index]._id);
+
+            storeId.push(cardTypes[index]._id);
+            console.log('storeID', storeId);
+
+            if (storeId.length >= 3) {
+              for (var i = 0; i < storeId.length; i++) {
+                homeSrvc.postPossibles(loginSrvc.user._id, storeId[i]);
+                // .then(function(res) {
+                //   console.log('postPossible_storeId: ', storeId[i]);
+                //   console.log('res: ', res);
+                // });
+              }
+              storeId = [];
+            }
+
+            // $scope.addCard();
+            console.log('CardType Index: ', cardTypes[index]);
+            console.log('storeId', storeId);
           };
+          $scope.reload()
 
 })
 
-.controller('sniffsCtrl', function($scope) {
-
+.controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc) {
+  var getConnections = function() {
+    sniffsSrvc.getConnections(loginSrvc.user._id).then(function(res) {
+      $scope.connections = res.data.connections;
+    });
+  };
+  getConnections();
 })
 
 .controller('woofsCtrl', function($scope, $timeout, $ionicScrollDelegate) {
