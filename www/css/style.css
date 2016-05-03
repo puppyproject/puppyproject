@@ -103,6 +103,7 @@ margin-top:30%;
 
 background:url('../img/supportbg.jpg');
 background-size:cover;
+background-position: 50% 20%;
 color:#FFFFFF;
 padding-top:40px;
 padding-bottom:200px;
@@ -147,26 +148,31 @@ width:70%;
 
 }
 
+.coderNames ul li{
+  display:inline-block;
+  padding-left: 20px;
+  color:white;
+}
+
+a:hover{
+  text-decoration: underline;
+  color:white;
+}
+
 /* Media query's adjustement */
 
 
 @media screen and (max-width: 460px) {
 
-.logo{
+  .logo{
 
-width:80%;
+  width:80%;
 
+  }
 
+  .badgeappstore{
 
-}
+  width:80%;
 
-.badgeappstore{
-
-width:80%;
-
-
-}
-
-
-
+  }
 }
