@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300,700|Montserrat:400,700);
+
 .headerbg{
 
 background: url('../img/mainDog.jpg');
@@ -75,6 +77,8 @@ padding-left:20px;
 padding-right:20px;
 color:#161616;
 /*background-color: #82D9B1;*/
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
 
 }
 
@@ -148,6 +152,11 @@ width:70%;
 a:hover{
   text-decoration: underline;
   color:white;
+}
+
+.quickSand {
+  font-family: 'QuickSand', sans-serif;
+  font-weight: 400;
 }
 
 /* Media query's adjustement */
