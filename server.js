@@ -15,9 +15,16 @@ var   express = require('express'),
        morgan = require('morgan'),
       //  session = require('express-session'),
       //  FacebookStrategy = require('passport-facebook'),
-       jwt = require('jwt-simple'),
        makeSendtoken = require('./serverResources/config/jwt.js');
 
+       app.use(bodyParser.json());
+         app.use(bodyParser.urlencoded({extended:true}));
+         app.use(cors());
+         app.use(morgan('dev'));
+         app.use(express.static(__dirname + '/www'));
+         app.use(passport.initialize());
+         // app.use(passport.session());
+         app.use('/api', router);
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));

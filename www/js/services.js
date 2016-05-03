@@ -68,6 +68,7 @@ angular.module('app.services', [])
         console.log('Result: ', result);
         if (result.data.success) {
           var userInfo = result.data.user;
+          console.log("userInfo: ", userInfo);
           storeUserCredentials(result.data.token);
           // console.log('token: ', result.data.token);
           resolve(result.data.user);

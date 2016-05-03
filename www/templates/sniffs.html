@@ -1,13 +1,14 @@
 <ion-view title='<img class="title-image" src="./img/letter-logo.png" />' id="page10" style="background-color:#F1F0F0;">
-    <ion-content padding="true" scroll="true" class="has-header">
-        <ion-list>
-            <ion-item class="item-avatar-left" ng-repeat="connect in connections | unique:'connect[0]._id'">
-                <img ng-src="{{connect.dogs[0].image}}">
-                <h2>{{connect.dogs[0].name}}</h2>
-                <p>{{connect.dogs[0].breed}}</p>
-            </ion-item>
-        </ion-list>
-    </ion-content>
-</ion-view>
+  <ion-content padding="true" scroll="true" class="has-header">
+    <ion-list>
+      <a ui-sref="tabsController.woofs">
+        <ion-item class="chat-item item-avatar-left" ng-repeat="connect in connections | unique:'connect[0]._id'">
 
- <!-- | unique: connection[0]._id -->
+          <img ng-src="{{connect.dogs[0].image}}">
+          <h2>{{connect.dogs[0].name}}</h2>
+          <p>{{connect.dogs[0].breed}}</p>
+        </ion-item>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -172,15 +172,15 @@ angular.module('app.controllers', [])
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     // $scope.addCard();
-    // rejectId.push(cardTypes[index]._id);
+    rejectId.push(cardTypes[index]._id);
     console.log('rejectId', rejectId);
 
-    // if (rejectId.length >= 3) {
-    //   for (var i = 0; i < rejectId.length; i++) {
-    //     homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
-    //   }
-    //   rejectId = [];
-    // }
+    if (rejectId.length >= 3) {
+      for (var i = 0; i < rejectId.length; i++) {
+        homeSrvc.postRejections(loginSrvc.user._id, rejectId[i]);
+      }
+      rejectId = [];
+    }
     // $scope.addCard();
     console.log('CardType Index: ', cardTypes[index]);
     console.log('rejectId', rejectId);
@@ -195,19 +195,19 @@ angular.module('app.controllers', [])
     console.log('User(id): ', loginSrvc.user._id);
     console.log('Ids:', cardTypes[index]._id);
 
-    // storeId.push(cardTypes[index]._id);
+    storeId.push(cardTypes[index]._id);
     console.log('storeID', storeId);
 
-    // if (storeId.length >= 3) {
-    //   for (var i = 0; i < storeId.length; i++) {
-    //     homeSrvc.postPossibles(loginSrvc.user._id, storeId[i]);
-    //     // .then(function(res) {
-    //     //   console.log('postPossible_storeId: ', storeId[i]);
-    //     //   console.log('res: ', res);
-    //     // });
-    //   }
-    //   storeId = [];
-    // }
+    if (storeId.length >= 3) {
+      for (var i = 0; i < storeId.length; i++) {
+        homeSrvc.postPossibles(loginSrvc.user._id, storeId[i]);
+        // .then(function(res) {
+        //   console.log('postPossible_storeId: ', storeId[i]);
+        //   console.log('res: ', res);
+        // });
+      }
+      storeId = [];
+    }
 
     // $scope.addCard();
     console.log('CardType Index: ', cardTypes[index]);
@@ -218,10 +218,11 @@ angular.module('app.controllers', [])
 })
 
 .controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc) {
-  var getConnections = function() {
+  var getConnections = function(user) {
+    console.log("sniffsCtrl(user): ", user);
+    console.log("loginSrvc.user._id: ", loginSrvc.user._id);
     sniffsSrvc.getConnections(loginSrvc.user._id).then(function(res) {
       $scope.connections = res.data.connections;
-
       console.log('sniffsCtrl: ', res.data.connections[0].dogs[0].name);
     });
   };
