@@ -60,6 +60,8 @@ padding-left:20px;
 padding-right:20px;
 color:#161616;
 background-color: #82D9B1;
+background:url('../img/background.png');
+background-size: cover;
 
 }
 
