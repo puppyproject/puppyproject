@@ -1,11 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-body{
-
-font-family: 'Open Sans', sans-serif;
-
-}
-
 .headerbg{
 
 background: url('../img/mainDog.jpg');
@@ -16,11 +8,6 @@ color:#FFFFFF;
 padding:20px;
 
 
-}
-
-.mainHeader h1{
-  color:black;
-  margin-left: 50%;
 }
 
 .logo{
@@ -62,6 +49,8 @@ color:#161616;
 background-color: #82D9B1;
 background:url('../img/background.png');
 background-size: cover;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
 
 }
 
