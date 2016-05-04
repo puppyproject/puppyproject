@@ -84,53 +84,15 @@ angular.module('app.services', [])
         method: 'PUT',
         url: API_ENDPOINT.url + '/user/' + user + '/dogs',
         data: {
-          age: dog.age,
-          name: dog.name,
-          gender: dog.gender,
-          size: dog.size,
-          breed: dog.breed,
-          description: dog.description,
-          fixed: dog.fixed,
-          image: dog.image
-        }
-      }).then(function(res) {
-        dfd.resolve(res);
-        console.log('Dog: ', dog);
-      }).catch(function(err) {
-        dfd.reject(err);
-      });
-      return dfd.promise;
-    };
-  })
-
-  .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
-    return {
-      responseError: function (response) {
-        $rootScope.$broadcast({
-          401: AUTH_EVENTS.notAuthenticated,
-        }[response.status], response);
-        return $q.reject(response);
-      }
-    };
-  })
-
-  .service('dogSrvc', function($q, $http, API_ENDPOINT) {
-    this.addDog = function(user, dog) {
-      var dfd = $q.defer();
-      console.log('User:', user);
-      $http({
-        method: 'PUT',
-        url: API_ENDPOINT.url + '/user/' + user + '/dogs',
-        data: {
           name: dog.name,
           age: dog.age,
-          gender: 'It',
-          size: dog.size,
           gender: dog.gender,
+          size: dog.size,
           breed: dog.breed,
           description: dog.description,
           photo: dog.image,
-          fixed: false
+          fixed: dog.fixed,
+          image: dog.image
         }
       }).then(function(res) {
         dfd.resolve(res);
@@ -150,11 +112,12 @@ angular.module('app.services', [])
         data: {
           name: dog.name,
           age: dog.age,
-          gender: 'It',
+          gender: dog.age,
           size: dog.size,
           breed: dog.breed,
-          description: 'poopy dog',
-          fixed: false
+          description: dob.description,
+          fixed: dog.fixed,
+          image: dog.image
         }
       }).then(function(res) {
         dfd.resolve(res);
@@ -163,6 +126,19 @@ angular.module('app.services', [])
         dfd.reject(err);
       });
       return dfd.promise;
+    };
+
+
+  })
+
+  .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+    return {
+      responseError: function (response) {
+        $rootScope.$broadcast({
+          401: AUTH_EVENTS.notAuthenticated,
+        }[response.status], response);
+        return $q.reject(response);
+      }
     };
   })
 

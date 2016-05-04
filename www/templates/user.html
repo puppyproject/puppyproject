@@ -11,43 +11,43 @@
           <button id="take-picture-button" ng-click="takePicture()" class="button button-block"><i class="icon ion-camera"></i>  Take Picture</button>
         </div>
         <form class="list" ng-submit="addDog(addMyDog)">
+        <label class="item item-input">
+            <span class="input-label">Image Url</span>
+            <input type="text" placeholder="" ng-model="addMyDog.image">
+        </label>
           <label class="item item-input">
-              <span class="input-label">Image Url</span>
-              <input type="text" placeholder="" ng-model="addMyDog.image">
+              <span class="input-label">Dog Name</span>
+              <input type="text" placeholder="" ng-model="addMyDog.name">
           </label>
-            <label class="item item-input">
-                <span class="input-label">Dog Name</span>
-                <input type="text" placeholder="" ng-model="addMyDog.name">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Age</span>
-                <input type="text" placeholder="" ng-model="addMyDog.age">
-            </label>
-            <label class="item item-select">
-                <span class="input-label">Gender</span>
-                <select ng-model="addMyDog.gender">
-                    <option>Female</option>
-                    <option>Male</option>
-                </select>
-            </label>
-            <label class="item item-select">
-                <span class="input-label">Size</span>
-                <select ng-model="addMyDog.size">
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                </select>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Breed</span>
-                <input type="text" placeholder="" ng-model="addMyDog.breed">
-            </label>
-            <!-- <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle> -->
-            <label class="item item-input">
-                <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea>
-            </label>
-            <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
+          <label class="item item-input">
+              <span class="input-label">Age</span>
+              <input type="text" placeholder="" ng-model="addMyDog.age">
+          </label>
+          <label class="item item-select">
+              <span class="input-label">Gender</span>
+              <select ng-model="addMyDog.gender">
+                  <option>Female</option>
+                  <option>Male</option>
+              </select>
+          </label>
+          <label class="item item-select">
+              <span class="input-label">Size</span>
+              <select ng-model="addMyDog.size">
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+              </select>
+          </label>
+          <label class="item item-input">
+              <span class="input-label">Breed</span>
+              <input type="text" placeholder="" ng-model="addMyDog.breed">
+          </label>
+          <ion-toggle toggle-class="toggle-balanced" ng-model="addMyDog.fixed">Neutered</ion-toggle>
+          <label class="item item-input">
+              <span class="input-label">Description</span><textarea placeholder="Description" ng-model="addMyDog.description"> </textarea>
+          </label>
+          <button id="submitButton" class="button button-block" type="submit"><i class="icon ion-paper-airplane"></i>  Submit</button>
 
-        </form>
-    </ion-content>
+      </form>
+  </ion-content>
 </ion-view>

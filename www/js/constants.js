@@ -5,6 +5,7 @@ angular.module('woofPals')
 })
 
 .constant('API_ENDPOINT', {
-  url: 'http://localhost:8100/api'
+  // url: 'http://localhost:8100/api'
   //  For a simulator use: url: 'http://127.0.0.1:8080/api'
+  url: 'http://woofpals.co/api'
 });

@@ -14,14 +14,14 @@ var userSchema = new Schema({
     },
        humanName:{type:String},
        dogs:[{
-            name:{type:String},
-            age:{type:Number},
-            gender:{type:String},
-            size:{type:String},
-            breed:{type:String},
-            description:{type:String},
-            fixed:{type:Boolean},
-            image:{type:String}
+                  name:{type:String},
+                  age:{type:Number},
+                  gender:{type:String},
+                  size:{type:String},
+                  breed:{type:String},
+                  description:{type:String},
+                  fixed:{type:Boolean},
+                  image:{type:String}
         }],
       connections:[{type:Schema.Types.ObjectId, ref:"User"}],
       rejections:[{type:Schema.Types.ObjectId, ref:"User"}],
