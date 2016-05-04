@@ -131,8 +131,10 @@ color:#FFFFFF;
 
 .footer{
 
-background:#181818;
+background:#82D9B1;
 padding:40px;
+background:url('../img/background.png');
+background-size: cover;
 
 
 }
@@ -157,6 +159,10 @@ a:hover{
 .quickSand {
   font-family: 'QuickSand', sans-serif;
   font-weight: 400;
+}
+
+.whiteFont {
+  color:white;
 }
 
 /* Media query's adjustement */
