@@ -2,11 +2,11 @@
   <ion-content padding="true" scroll="true" class="has-header">
     <ion-list>
       <a ui-sref="tabsController.woofs">
-        <ion-item class="chat-item item-avatar-left" ng-repeat="connect in connections | unique:'connect[0]._id'">
+        <ion-item class="chat-item item-avatar-left" ng-repeat="connect in connections">
 
-          <img ng-src="{{connect.dogs[0].image}}">
-          <h2>{{connect.dogs[0].name}}</h2>
-          <p>{{connect.dogs[0].breed}}</p>
+          <img ng-src="{{connect.dogs.image}}">
+          <h2>{{connect.dogs.name}}</h2>
+          <p>{{connect.dogs.breed}}</p>
         </ion-item>
       </a>
     </ion-list>

@@ -30,11 +30,12 @@ angular.module('app.controllers', [])
 
   $scope.signup = function() {
     loginSrvc.register($scope.user).then(function(user) {
-      $state.go('tabsController.user');
+      $state.go('login');
       var alertPopup = $ionicPopup.alert({
         title: 'Register success!',
         template: user
       });
+
       loginSrvc.user = user; //on the login srvc persists the user data
       console.log('user', user);
       console.log('loginsrvc.user', loginSrvc.user);
@@ -217,13 +218,15 @@ angular.module('app.controllers', [])
   $scope.reload();
 })
 
-.controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc) {
+.controller('sniffsCtrl', function($scope, $http, $ionicLoading, sniffsSrvc, loginSrvc, $filter, $stateParams) {
   var getConnections = function(user) {
     console.log("sniffsCtrl(user): ", user);
     console.log("loginSrvc.user._id: ", loginSrvc.user._id);
     sniffsSrvc.getConnections(loginSrvc.user._id).then(function(res) {
       $scope.connections = res.data.connections;
-      console.log('sniffsCtrl: ', res.data.connections[0].dogs[0].name);
+      console.log('connections(res): ', res);
+      console.log('connections: ', $scope.connections);
+      // console.log('sniffsCtrl: ', res.data.connections[0].dogs[0].name);
     });
   };
 

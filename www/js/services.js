@@ -170,6 +170,7 @@ angular.module('app.services', [])
       method: 'GET',
       url: API_ENDPOINT.url + '/user/',
     }).then(function(res) {
+      // console.log(74374843, res);
       dfd.resolve(res);
     }).catch(function(err) {
       dfd.reject(err);
