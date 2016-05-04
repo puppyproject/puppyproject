@@ -8,5 +8,5 @@ lib/
 database.js
 hooks/
 resources/
-server/Resources/
+serverResources/
 server.js
