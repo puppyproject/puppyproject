@@ -242,7 +242,7 @@ exports.getConnections = function(req, res){
       if(!user){
         return res.status(404).end();
       }
-      res.json(user);
+      return res.json(user);
       // return res.status(200).end();
   });
 };

@@ -67,6 +67,7 @@ var   express = require('express'),
    newUser.save(function(err) {
     console.log(err);
      if (err) {
+
        return res.json({success: false, msg: 'Username already exists.'});
      }
      return res.json({success: true, msg: 'Successful created new user.'});
